@@ -1,3 +1,5 @@
+bastion_IP = 34.90.19.140 someinternalhost_IP = 10.164.0.3
+
 ##### Содержание 
 [Домашня работа №2](#HW2)    
 [Домашня работа №3](#HW3)    
@@ -55,4 +57,3 @@ bastion_IP = 34.90.19.140
 someinternalhost_IP = 10.164.0.3
 ```
 5. Добавил конфигурационные файлы в git для памяти (nginx, pritunl, config_ssh)   
-bastion_IP = 34.90.19.140 someinternalhost_IP = 10.164.0.3
