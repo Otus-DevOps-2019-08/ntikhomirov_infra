@@ -1,4 +1,5 @@
-bastion_IP = 34.90.19.140 someinternalhost_IP = 10.164.0.3
+bastion_IP = 34.90.19.140 
+someinternalhost_IP = 10.164.0.4
 
 ##### Содержание 
 [Домашня работа №2](#HW2)    
