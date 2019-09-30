@@ -54,3 +54,4 @@ bastion_URL = vpn-otus.nt33.ru
 bastion_IP = 34.90.19.140
 someinternalhost_IP = 10.164.0.3
 ```
+5. Добавил конфигурационные файлы в git для памяти (nginx, pritunl, config_ssh)
