@@ -1,7 +1,7 @@
 # ntikhomirov_infra
 ntikhomirov Infra repository
 
-## Примечание к 2 заданию
+## Примечание к ДЗ№2 заданию
 
 1. Travis
     - При установке дополнительно требуются пакеты: gcc, make, ruby-dev (Description: Ubuntu 18.04.3 LTS)
@@ -11,3 +11,19 @@ ntikhomirov Infra repository
     - Пытался использовать основной канал slack вместо тестового
 3. Проверил математические операции в тестах
 4. Изучал разметку - Markdown Syntax.
+
+## Примечание к ДЗ№3
+
+1. Виртуальные машины
+   - google переносы в ключе (pub) воспринимает как начало нового ключа
+2. ssh (Домашнее задание)
+   - Для коннекта к host bastion командой вида ssh bastion
+     1. нужно создать(если еще не создан) файл конфига клиетна ssh (~/.ssh/)
+     2. добавить секцию конфигурации хоста
+        ```
+        Host {ALIAS NAME}
+	    HostName {IP}
+	    User {USER}
+	    IdentityFile ~/.ssh/{KEY}
+        ```
+
