@@ -1,0 +1,11 @@
+Host bastion.google
+    HostName 34.90.19.140
+    User tihomirovnv
+    IdentityFile ~/.ssh/tihomirovnv
+Host  someinternalhost.google
+    HostName 34.90.19.140
+    User tihomirovnv
+    IdentityFile ~/.ssh/tihomirovnv
+    RequestTTY force
+    RemoteCommand ssh 10.164.0.3
+    ForwardAgent yes
