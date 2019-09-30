@@ -49,7 +49,7 @@
 
 4. Данные серверов
 ```
-VPN_URL = [https://vpn-otus.nt33.ru/](https://vpn-otus.nt33.ru/)
+VPN_URL = https://vpn-otus.nt33.ru/
 bastion_URL = vpn-otus.nt33.ru
 bastion_IP = 34.90.19.140
 someinternalhost_IP = 10.164.0.3
