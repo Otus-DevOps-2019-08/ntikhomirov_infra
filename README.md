@@ -1,7 +1,3 @@
-bastion_IP = 34.90.19.140
-    
-someinternalhost_IP = 10.164.0.4
-    
 ##### Содержание 
 [Домашня работа №2](#HW2)    
 [Домашня работа №3](#HW3)    
@@ -55,7 +51,7 @@ someinternalhost_IP = 10.164.0.4
 ```
 VPN_URL = https://vpn-otus.nt33.ru/
 bastion_URL = vpn-otus.nt33.ru
-bastion_IP = 34.90.19.140
-someinternalhost_IP = 10.164.0.4
+bastion_IP=34.90.19.140
+someinternalhost_IP=10.164.0.4
 ```
 5. Добавил конфигурационные файлы в git для памяти (nginx, pritunl, config_ssh)   
