@@ -54,8 +54,7 @@ Nikolay Tikhomirov repository
 ```
 VPN_URL = https://vpn-otus.nt33.ru/
 bastion_URL = vpn-otus.nt33.ru
-bastion_IP=34.90.19.140
-someinternalhost_IP=10.164.0.4
-someinternalhost_IP
+bastion_IP = 34.90.19.140
+someinternalhost_IP = 10.164.0.4
 ```
 5. Добавил конфигурационные файлы в git для памяти (nginx, pritunl, config_ssh)   
