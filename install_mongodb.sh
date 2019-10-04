@@ -10,5 +10,5 @@ sudo bash -c 'echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.
 sudo apt update
 sudo apt install -y mongodb-org
 
-sydo systemctl start mongod
-sydo systemctl enable mongod
+sudo systemctl start mongod
+sudo systemctl enable mongod
