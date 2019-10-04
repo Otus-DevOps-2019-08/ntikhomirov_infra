@@ -13,7 +13,7 @@ git checkout cloud-testapp
 
 chmod +x ./install_ruby.sh
 chmod +x ./install_mongodb.sh
-chmod +x ./deploy.#!/bin/sh
+chmod +x ./deploy.sh
 
 ./install_ruby.sh
 ./install_mongodb.sh
