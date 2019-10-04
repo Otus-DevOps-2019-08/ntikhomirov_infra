@@ -1,0 +1,10 @@
+{
+    "mongodb_uri": "mongodb://localhost:27017/pritunl", 
+    "log_path": "/var/log/pritunl.log", 
+    "static_cache": true, 
+    "temp_path": "/tmp/pritunl_ea893436165d4471a2e3f3bf4a5d32c1", 
+    "bind_addr": "127.0.0.1", 
+    "www_path": "/usr/share/pritunl/www", 
+    "local_address_interface": "127.0.0.1", 
+    "port": 4443
+}
