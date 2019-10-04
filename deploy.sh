@@ -8,17 +8,17 @@ EOF
 
 #Ужасный способа не придумал как добавить конфиг для nginx
 sudo bash -s <<EOF
-echo 'server {' > /etc/nginx/conf.d/otus.confg
-echo 'listen 10.164.0.2:80;' >> /etc/nginx/conf.d/otus.confg
-echo 'server_name otus.nt33.ru' >> /etc/nginx/conf.d/otus.confg
-echo 'location / {'  >> /etc/nginx/conf.d/otus.confg
-echo '    proxy_pass http://127.0.0.1:9292/;' >> /etc/nginx/conf.d/otus.confg
-echo '    proxy_set_header Host $host;' >> /etc/nginx/conf.d/otus.confg
-echo '    proxy_set_header X-Real-IP  $remote_addr;' >> /etc/nginx/conf.d/otus.confg
-echo '    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> /etc/nginx/conf.d/otus.confg
-echo '    allow all;' >> /etc/nginx/conf.d/otus.confg
-echo '  }' >> /etc/nginx/conf.d/otus.confg
-echo '}' >> /etc/nginx/conf.d/otus.confg
+echo 'server {' > /etc/nginx/conf.d/otus.conf
+echo 'listen 10.164.0.2:80;' >> /etc/nginx/conf.d/otus.conf
+echo 'server_name otus.nt33.ru' >> /etc/nginx/conf.d/otus.conf
+echo 'location / {'  >> /etc/nginx/conf.d/otus.conf
+echo '    proxy_pass http://127.0.0.1:9292/;' >> /etc/nginx/conf.d/otus.conf
+echo '    proxy_set_header Host $host;' >> /etc/nginx/conf.d/otus.conf
+echo '    proxy_set_header X-Real-IP  $remote_addr;' >> /etc/nginx/conf.d/otus.conf
+echo '    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> /etc/nginx/conf.d/otus.conf
+echo '    allow all;' >> /etc/nginx/conf.d/otus.conf
+echo '  }' >> /etc/nginx/conf.d/otus.conf
+echo '}' >> /etc/nginx/conf.d/otus.conf
 
 echo '[Unit]' > /etc/systemd/system/otus.service
 echo 'Description=puma' >> /etc/systemd/system/otus.service
