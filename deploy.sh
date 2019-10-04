@@ -41,11 +41,10 @@ cd reddit && bundle install
 
 
 #А что puma не может иметь своего собственого юнита?
-
-
 sudo systemctl daemon reload
-sydo systemctl start otus
-sydo systemctl enable otus
 
-sydo systemctl start nginx
-sydo systemctl enable nginx
+sudo systemctl start otus
+sudo systemctl enable otus
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
