@@ -2,8 +2,11 @@
 
 #Устанавливаем nginx (не гоже приложению болтаться на 9292 порту)
 sudo bash -s <<EOF
-export DEBIAN_FRONTEND=noninteractive
 apt update
+export DEBIAN_FRONTEND=noninteractive
+ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+apt-get install tzdata
+dpkg-reconfigure --frontend noninteractive tzdata
 apt install nginx -y
 EOF
 
