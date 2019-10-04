@@ -2,8 +2,9 @@
 
 #Устанавливаем nginx (не гоже приложению болтаться на 9292 порту)
 sudo bash -s <<EOF
-export DEBIAN_FRONTEND=noninteractive
 apt update
+export DEBIAN_FRONTEND=noninteractive
+apt-get install tzdata
 apt install nginx -y
 EOF
 
