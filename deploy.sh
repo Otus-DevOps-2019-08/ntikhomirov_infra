@@ -1,5 +1,8 @@
 #!/bin/bash
+
 #Устанавливаем nginx (не гоже приложению болтаться на 9292 порту)
+export DEBIAN_FRONTEND=noninteractive
+export DEBCONF_NONINTERACTIVE_SEEN=true
 sudo apt install nginx -y
 
 #Ужасный способа не придумал как добавить конфиг для nginx
@@ -14,8 +17,6 @@ sudo echo '    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;' >> 
 sudo echo '    allow all;' >> /etc/nginx/conf.d/otus.confg
 sudo echo '  }' >> /etc/nginx/conf.d/otus.confg
 sudo echo '}' >> /etc/nginx/conf.d/otus.confg
-
-
 
 
 #Деплой приложения

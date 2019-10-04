@@ -18,5 +18,5 @@ gcloud beta compute --project=indigo-almanac-254221 \
   --boot-disk-size=10GB \
   --boot-disk-type=pd-standard \
   --boot-disk-device-name=${VM_NAME} \
-  --reservation-affinity=any
+  --reservation-affinity=any \
   --tags=http-server
