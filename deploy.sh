@@ -3,6 +3,7 @@
 #Устанавливаем nginx (не гоже приложению болтаться на 9292 порту)
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
+
 sudo apt install nginx -y
 
 #Ужасный способа не придумал как добавить конфиг для nginx
