@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Устанавливаем nginx (не гоже приложению болтаться на 9292 порту)
+sudo bash -s <<EOF
 export DEBIAN_FRONTEND=noninteractive
-export DEBCONF_NONINTERACTIVE_SEEN=true
-sudo apt install nginx -y
+apt update
+apt install nginx -y
+EOF
+
 
 #Ужасный способа не придумал как добавить конфиг для nginx
 sudo echo 'server {' > /etc/nginx/conf.d/otus.confg
