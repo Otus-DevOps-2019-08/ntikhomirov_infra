@@ -25,7 +25,7 @@ echo 'Description=puma' >> /etc/systemd/system/otus.service
 
 echo '' >> /etc/systemd/system/otus.service
 echo '[Service]' >> /etc/systemd/system/otus.service
-echo 'ExecStart=/usr/local/bin/puma -p' >> /etc/systemd/system/otus.service
+echo 'ExecStart=/usr/local/bin/puma -d' >> /etc/systemd/system/otus.service
 echo 'KillMode=process' >> /etc/systemd/system/otus.service
 echo 'Restart=on-failure' >> /etc/systemd/system/otus.service
 echo 'Type=notify' >> /etc/systemd/system/otus.service
