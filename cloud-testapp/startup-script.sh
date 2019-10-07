@@ -37,7 +37,7 @@ EOF
 sudo bash -s <<EOF
 echo 'server {' > /etc/nginx/conf.d/otus.conf
 echo 'listen 10.164.0.2:80;' >> /etc/nginx/conf.d/otus.conf
-echo 'server_name otus.nt33.ru;' >> /etc/nginx/conf.d/otus.conf
+echo 'server_name otus.nt33.ru 34.66.250.139;' >> /etc/nginx/conf.d/otus.conf
 echo 'location / {'  >> /etc/nginx/conf.d/otus.conf
 echo '    proxy_pass http://127.0.0.1:9292/;' >> /etc/nginx/conf.d/otus.conf
 echo '    proxy_set_header Host \$host;' >> /etc/nginx/conf.d/otus.conf
