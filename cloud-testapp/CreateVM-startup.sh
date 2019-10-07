@@ -19,4 +19,6 @@ gcloud beta compute --project=indigo-almanac-254221 \
   --boot-disk-type=pd-standard \
   --boot-disk-device-name=${VM_NAME} \
   --reservation-affinity=any \
-  --tags=http-server
+  --tags=http-server \
+  --metadata-from-file startup-script="startup-script.sh"
+  

@@ -19,34 +19,16 @@ echo '    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;' >> /etc
 echo '    allow all;' >> /etc/nginx/conf.d/otus.conf
 echo '  }' >> /etc/nginx/conf.d/otus.conf
 echo '}' >> /etc/nginx/conf.d/otus.conf
-
-echo '[Unit]' > /etc/systemd/system/otus.service
-echo 'Description=puma' >> /etc/systemd/system/otus.service
-
-echo '' >> /etc/systemd/system/otus.service
-echo '[Service]' >> /etc/systemd/system/otus.service
-echo 'ExecStart=/usr/local/bin/puma -d' >> /etc/systemd/system/otus.service
-echo 'KillMode=process' >> /etc/systemd/system/otus.service
-echo 'Restart=on-failure' >> /etc/systemd/system/otus.service
-echo 'Type=notify' >> /etc/systemd/system/otus.service
-echo '' >> /etc/systemd/system/otus.service
-echo '[Install]' >> /etc/systemd/system/otus.service
-echo 'WantedBy=multi-user.target' >> /etc/systemd/system/otus.service
-echo 'Alias=sshd.service' >> /etc/systemd/system/otus.service
 EOF
 
 #Деплой приложения
 mkdir -p ~/app
 cd ~/app
 git clone -b monolith https://github.com/express42/reddit.git
-cd reddit && bundle install
+cd ~/app/reddit
+bundle install
 
+puma -d
 
-#А что puma не может иметь своего собственого юнита?
-sudo systemctl daemon reload
-
-sudo systemctl start otus
-sudo systemctl enable otus
-
-sudo systemctl start nginx
+sudo systemctl restart nginx
 sudo systemctl enable nginx

@@ -14,3 +14,4 @@ sudo apt install -y ruby-full ruby-bundler build-essential
 #Проверяем версии
 ruby -v
 bundler -v
+sudo gem install bundle
