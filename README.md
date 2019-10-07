@@ -66,5 +66,5 @@ someinternalhost_IP = 10.164.0.4
 3. Порт 9292 тоже открыт, но ....
 ```
 testapp_IP = 34.90.19.140
-testapp_port = 80
+testapp_port = 9292
 ```
