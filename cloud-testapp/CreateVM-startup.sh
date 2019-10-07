@@ -4,7 +4,7 @@ VM_NAME='reddit-app-test'
 #Внутренний IP
 PRIVATE_IP='10.164.0.2'
 #Внешний IP(зарезервированный)
-IP='34.66.250.139'
+IP='34.90.19.140'
 
 gcloud beta compute --project=indigo-almanac-254221 \
   instances create ${VM_NAME} \
@@ -12,7 +12,7 @@ gcloud beta compute --project=indigo-almanac-254221 \
   --machine-type=f1-micro \
   --subnet=default \
   --private-network-ip=${PRIVATE_IP} \
-  --address=34.90.19.140 \
+  --address=${IP} \
   --image=ubuntu-minimal-1604-xenial-v20190918 \
   --image-project=ubuntu-os-cloud \
   --boot-disk-size=10GB \
@@ -21,4 +21,3 @@ gcloud beta compute --project=indigo-almanac-254221 \
   --reservation-affinity=any \
   --tags=http-server \
   --metadata-from-file startup-script="startup-script.sh"
-  
