@@ -65,6 +65,6 @@ someinternalhost_IP = 10.164.0.4
 2. Написан starrup-script.sh(добавил nginx для проксирования запросов с 80 порта на 9292)
 3. Порт 9292 тоже открыт, но ....
 ```
-testapp_IP = 35.198.167.169
+testapp_IP = 34.90.19.140
 testapp_port = 80
 ```
