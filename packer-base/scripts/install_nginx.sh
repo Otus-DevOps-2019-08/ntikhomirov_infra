@@ -10,4 +10,6 @@ dpkg-reconfigure --frontend noninteractive tzdata
 
 apt install nginx -y
 
+mv /tmp/otus.conf /etc/nginx/conf.d/
+
 sudo systemctl enable nginx
