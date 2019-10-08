@@ -33,16 +33,6 @@
         },
         {
           "type": "file",
-          "source": "file/privkey.pem",
-          "destination": "/tmp/"
-        },
-        {
-          "type": "file",
-          "source": "file/fullchain.pem",
-          "destination": "/tmp/"
-        },
-        {
-          "type": "file",
           "source": "file/otus.service",
           "destination": "/tmp/"
         },
