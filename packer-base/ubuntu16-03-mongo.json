@@ -19,16 +19,31 @@
         }
     ],
     "provisioners": [
-       {
+        {
           "type": "shell",
-          "script": "scripts/install.sh",
+          "script": "scripts/install_nginx.sh",
           "execute_command": "sudo {{.Path}}"
         },
         {
+           "type": "shell",
+           "script": "scripts/install_mongodb.sh",
+           "execute_command": "sudo {{.Path}}"
+         },
+         {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+          },
+          {
+             "type": "shell",
+             "script": "scripts/install_puma.sh",
+             "execute_command": "sudo {{.Path}}"
+           },
+          {
             "type": "file",
             "source": "scripts/otus.conf",
             "destination": "/etc/nginx/conf.d/"
-        }
+         }
 
     ]
 }
