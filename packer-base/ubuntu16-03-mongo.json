@@ -23,10 +23,10 @@
           "type": "shell",
           "script": "scripts/install.sh",
           "execute_command": "sudo {{.Path}}"
-        }
+        },
         {
             "type": "file",
-            "script": "scripts/otus.conf",
+            "source": "scripts/otus.conf",
             "destination": "/etc/nginx/conf.d/"
         }
 
