@@ -1,26 +1,34 @@
 {
+    "variables": {
+      "project_id": null,
+      "source_image_family": null,
+      "zone": "europe-west4-a",
+      "user": "tihomirovnv",
+      "machine_type": "f1-micro"
+     },
     "builders": [
         {
             "type": "googlecompute",
-            "project_id": "infra-189607",
+            "project_id": "{{user `project_id`}}",
             "image_name": "reddit-base-{{timestamp}}",
             "image_family": "reddit-base",
-            "source_image_family": "ubuntu-1604-lts",
-            "zone": "europe-west1-b",
-            "ssh_username": "appuser",
-            "machine_type": "f1-micro"
+            "source_image_family": "{{user `source_image_family`}}",
+            "zone": "{{user `zone`}}",
+            "ssh_username": "{{user `user`}}",
+            "machine_type": "{{user `machine_type`}}"
         }
     ],
     "provisioners": [
-        {
-            "type": "shell",
-            "script": "scripts/install_ruby.sh",
-            "execute_command": "sudo {{.Path}}"
-        },
-        {
-            "type": "shell",
-            "script": "scripts/install_mongodb.sh",
-            "execute_command": "sudo {{.Path}}"
+       {
+          "type": "shell",
+          "script": "scripts/install.sh",
+          "execute_command": "sudo {{.Path}}"
         }
+        {
+            "type": "file",
+            "script": "scripts/otus.conf",
+            "destination": "/etc/nginx/conf.d/"
+        }
+
     ]
 }
