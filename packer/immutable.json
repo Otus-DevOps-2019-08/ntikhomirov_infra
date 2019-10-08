@@ -11,19 +11,42 @@
             "type": "googlecompute",
             "project_id": "{{user `project_id`}}",
             "image_name": "reddit-base-{{timestamp}}",
-            "image_family": "reddit-base",
+            "image_family": "reddit-full",
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "{{user `zone`}}",
             "ssh_username": "{{user `user`}}",
-            "machine_type": "{{user `machine_type`}}"
-        }
+            "machine_type": "{{user `machine_type`}}",
+            "image_description": "Образ содержит установленые и настроенные пакеты:nginx(ssl), ruby, puma(unit.server)",
+            "disk_size": "10",
+            "disk_type" : "pd-standard",
+            "network" : "default",
+	    "tags": ["base", "linux"]
+ 
+	    
+	}
     ],
     "provisioners": [
         {
           "type": "file",
-          "source": "scripts/otus.conf",
+          "source": "file/otus.conf",
           "destination": "/tmp/"
-        }
+        },
+        {
+          "type": "file",
+          "source": "file/privkey.pem",
+          "destination": "/tmp/"
+        },
+        {
+          "type": "file",
+          "source": "file/fullchain.pem",
+          "destination": "/tmp/"
+        },
+        {
+          "type": "file",
+          "source": "file/otus.service",
+          "destination": "/tmp/"
+        },
+
         {
           "type": "shell",
           "script": "scripts/install_nginx.sh",
@@ -43,7 +66,7 @@
              "type": "shell",
              "script": "scripts/install_puma.sh",
              "execute_command": "sudo {{.Path}}"
-           },
+           }
 
 
     ]
