@@ -1,0 +1,53 @@
+{
+    "variables": {
+      "project_id": null,
+      "source_image_family": null,
+      "zone": "europe-west4-a",
+      "user": "tihomirovnv",
+      "machine_type": "f1-micro"
+     },
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{user `project_id`}}",
+            "image_name": "ubuntu-puma-{{timestamp}}",
+            "image_family": "reddit-full",
+            "source_image_family": "{{user `source_image_family`}}",
+            "zone": "{{user `zone`}}",
+            "ssh_username": "{{user `user`}}",
+            "machine_type": "{{user `machine_type`}}",
+            "image_description": "Puma HTTP server",
+            "disk_size": "10",
+            "disk_type" : "pd-standard",
+            "network" : "default",
+	    "tags": ["base", "linux"]
+
+
+	}
+    ],
+    "provisioners": [
+        {
+          "type": "file",
+          "source": "file/otus.service",
+          "destination": "/tmp/"
+        },
+
+        {
+          "type": "shell",
+          "script": "scripts/install.sh",
+          "execute_command": "sudo {{.Path}}"
+        },
+         {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+          },
+          {
+             "type": "shell",
+             "script": "scripts/install_puma.sh",
+             "execute_command": "sudo {{.Path}}"
+           }
+
+
+    ]
+}
