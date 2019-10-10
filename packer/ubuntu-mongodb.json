@@ -28,13 +28,13 @@
     "provisioners": [
         {
           "type": "shell",
-          "script": "scripts/install",
+          "script": "scripts/install.sh",
           "execute_command": "sudo {{.Path}}"
         },
         {
            "type": "shell",
            "script": "scripts/install_mongodb.sh",
            "execute_command": "sudo {{.Path}}"
-         },
+         }
     ]
 }
