@@ -16,7 +16,7 @@ resource "google_compute_instance" "app" {
   zone = "europe-west4-a"
   boot_disk {
     initialize_params {
-      image = "ubuntu-nginx-1570710004"
+      image = "ubuntu-nginx-ntikhomirov"
     }
   }
 

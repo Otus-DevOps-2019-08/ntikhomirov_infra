@@ -10,7 +10,7 @@
         {
             "type": "googlecompute",
             "project_id": "{{user `project_id`}}",
-            "image_name": "ubuntu-nginx-{{timestamp}}",
+            "image_name": "ubuntu-nginx-ntikhomirov",
             "image_family": "reddit-full",
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "{{user `zone`}}",
