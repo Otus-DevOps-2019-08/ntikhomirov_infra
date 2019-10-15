@@ -15,5 +15,6 @@ mv /tmp/fullchain.pem /etc/nginx/ssl
 mv /tmp/monitor.py /opt/www/monitor/cgi-bin
 
 chown -R nginx:nginx /opt/www
+chmod -R 0777 /opt/www
 
 sudo systemctl enable nginx
