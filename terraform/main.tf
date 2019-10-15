@@ -71,7 +71,7 @@ resource "google_compute_instance" "puma" {
       bastion_host = "otus.nt33.ru"
       bastion_user = "ntikhomirov"
       bastion_port = 22
-      private_key = "${file("/home/ntikhomirov/.ssh/ntikhomirov")}"
+      private_key = "${file("/home/ntikhomirov/.ssh/tihomirovnv")}"
   }
 
   provisioner "file" {
@@ -84,8 +84,6 @@ resource "google_compute_instance" "puma" {
   }
 
 }
-
-
 
 
 resource "google_compute_instance" "nginx" {
