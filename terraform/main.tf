@@ -38,7 +38,7 @@ resource "google_compute_instance" "mongo" {
 
   metadata = {
     # путь до публичного ключа
-    ssh-keys = "appuser:${file(${var.public_key_path})}\nappuser2:${file(${var.public_key_path})"
+    ssh-keys = "appuser:${file(var.public_key_path)} \n appuser2:${file(var.public_key_path)}"
   }
 
 }
@@ -59,7 +59,7 @@ resource "google_compute_instance" "puma" {
   }
   metadata = {
     # путь до публичного ключа
-    ssh-keys = "appuser:${file(${var.public_key_path})}\nappuser2:${file(${var.public_key_path})"
+    ssh-keys = "appuser:${file(var.public_key_path)} \n appuser2:${file(var.public_key_path)}"
 
   }
 
@@ -72,7 +72,7 @@ resource "google_compute_instance" "puma" {
       bastion_host = "otus.nt33.ru"
       bastion_user = "ntikhomirov"
       bastion_port = 22
-      private_key = "${file(${var.private_key_path})}"
+      private_key = "${file(var.private_key_path)}"
   }
 
   provisioner "file" {
@@ -110,7 +110,7 @@ resource "google_compute_instance" "nginx" {
 
   metadata = {
     # путь до публичного ключа
-    ssh-keys = "appuser:${file(${var.public_key_path})}\nappuser2:${file(${var.public_key_path})"
+    ssh-keys = "appuser:${file(var.public_key_path)} \n appuser2:${file(var.public_key_path)}"
 
   }
 
