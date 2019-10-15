@@ -16,12 +16,18 @@ resource "google_compute_instance" "app" {
   zone = "europe-west4-a"
   boot_disk {
     initialize_params {
+<<<<<<< HEAD
       image = "ubuntu-nginx-1571125476"
+=======
+      image = "ubuntu-nginx-ntikhomirov"
+>>>>>>> 522095bfc50da1b78017668aac38f0edb3fae732
     }
   }
 
   network_interface {
     network = "default"
-    access_config {}
+    access_config {
+        nat_ip = "otus"
+    }
   }
 }
