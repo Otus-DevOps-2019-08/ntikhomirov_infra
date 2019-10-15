@@ -31,9 +31,15 @@
          "script": "scripts/install.sh",
          "execute_command": "sudo {{.Path}}"
        },
+
         {
           "type": "file",
           "source": "file/otus.conf",
+          "destination": "/tmp/"
+        },
+        {
+          "type": "file",
+          "source": "file/monitor.py",
           "destination": "/tmp/"
         },
         {
