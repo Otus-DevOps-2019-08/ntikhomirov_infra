@@ -4,12 +4,9 @@ terraform {
 }
 
 provider "google" {
-  # Версия провайдера
+
   version = "2.15"
-
-  # ID проекта
   project = "indigo-almanac-254221"
-
   region = "europe-west4-a"
 }
 
@@ -22,7 +19,7 @@ resource "google_compute_instance" "app" {
       image = "ubuntu-nginx-1570710004"
     }
   }
-  
+
   network_interface {
     network = "default"
     access_config {}
