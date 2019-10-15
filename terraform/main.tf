@@ -14,7 +14,7 @@ provider "google" {
 resource "google_compute_address" "nginx" {
   name = "otus"
   address = "35.204.41.14"
-  region = "europe-west4-a" 
+  region = "europe-west4-a"
 }
 
 resource "google_compute_instance" "mongo" {
@@ -64,7 +64,7 @@ resource "google_compute_instance" "puma2" {
   network_interface {
     network = "default"
     access_config{
-      nat_ip = null
+      nat = false
     }
   }
 }
