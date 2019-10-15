@@ -17,7 +17,7 @@ resource "google_compute_instance" "mongo" {
   zone = "europe-west4-a"
   boot_disk {
     initialize_params {
-      image = "ubuntu-mongo-ntikhomirov"
+      image = "ubuntu-mongodb-ntikhomirov"
     }
   }
 
