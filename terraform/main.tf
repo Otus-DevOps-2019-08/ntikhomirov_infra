@@ -13,16 +13,12 @@ provider "google" {
 
 resource "google_compute_firewall" "firewall_nginx" {
   name = "allow-nginx-default"
-  # Название сети, в которой действует правило
   network = "default"
-  # Какой доступ разрешить
   allow {
     protocol = "tcp"
     ports = ["9292"]
   }
-  # Каким адресам разрешаем доступ
   source_ranges = ["0.0.0.0/0"]
-  # Правило применимо для инстансов с перечисленными тэгами
   target_tags = ["reddit-nginx"]
 }
 
@@ -47,28 +43,9 @@ resource "google_compute_instance" "mongo" {
 
 }
 
-resource "google_compute_instance" "puma1" {
-  name = "puma1"
-  machine_type = "f1-micro"
-  zone = "europe-west4-a"
-  boot_disk {
-    initialize_params {
-      image = "ubuntu-puma-ntikhomirov"
-    }
-  }
-
-  network_interface {
-    network = "default"
-  }
-  metadata = {
-    # путь до публичного ключа
-    ssh-keys = "appuser:${file("/home/ntikhomirov/.ssh/appuser.pub")}\nappuser2:${file("/home/ntikhomirov/.ssh/appuser2.pub")}"
-  }
-
-}
-
-resource "google_compute_instance" "puma2" {
-  name = "puma2"
+resource "google_compute_instance" "puma" {
+  count = 2
+  name = "puma"
   machine_type = "f1-micro"
   zone = "europe-west4-a"
   boot_disk {
@@ -89,7 +66,7 @@ resource "google_compute_instance" "puma2" {
       type         = "ssh"
       user         = "ntikhomirov"
       agent        = true
-      host         = "puma2"
+      host         = "puma"
       port         = 22
       bastion_host = "otus.nt33.ru"
       bastion_user = "ntikhomirov"
@@ -107,6 +84,7 @@ resource "google_compute_instance" "puma2" {
   }
 
 }
+
 
 
 
