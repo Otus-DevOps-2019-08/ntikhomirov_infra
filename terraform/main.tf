@@ -11,11 +11,13 @@ provider "google" {
 }
 
 
-resource "google_compute_address" "nginx" {
-  name = "otus"
-  address = "35.204.41.14"
-  region = "europe-west4-a"
+resource "google_compute_address" "external" {
+  count        = "${35.204.41.14 ? 1 : 0}"
+  name         = "otus"
+  address_type = "EXTERNAL"
+  region       = "europe-west4-a"
 }
+
 
 resource "google_compute_instance" "mongo" {
   name = "mongo"
@@ -64,7 +66,7 @@ resource "google_compute_instance" "puma2" {
   network_interface {
     network = "default"
     access_config{
-      nat = false
+      nat = ""
     }
   }
 }
@@ -84,7 +86,7 @@ resource "google_compute_instance" "nginx" {
   network_interface {
     network = "default"
     access_config{
-      nat_ip = "${google_compute_address.nginx.address}"
+      nat_ip = "${element(concat(google_compute_address.external.*.address, list("")), 0)}"
     }
   }
 }
