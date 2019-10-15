@@ -18,9 +18,14 @@ def check_socket(host, port):
         else:
             print (host, ":", port, "Port is not open")
 
-ping("127.0.0.1")
-check_socket("127.0.0.1",80)
-check_socket("127.0.0.1",443)
+ping("nginx")
+check_socket("nginx",80)
+check_socket("nginx",443)
 
-ping("10.164.0.38")
-check_socket("10.164.0.38",27017)
+ping("mongo")
+check_socket("mongo",27017)
+
+ping("puma1")
+check_socket("puma1",8080)
+ping("puma2")
+check_socket("puma2",8080)

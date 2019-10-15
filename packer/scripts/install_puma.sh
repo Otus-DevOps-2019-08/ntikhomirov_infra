@@ -12,4 +12,6 @@ bundle install
 
 mv /tmp/otus.service /etc/systemd/system/
 
+sed -i 's/127.0.0.1/mongo/g' /home/tihomirovnv/app/reddit/app.rb
+
 systemctl enable otus.service

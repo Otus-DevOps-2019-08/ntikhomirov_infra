@@ -11,7 +11,59 @@ provider "google" {
 }
 
 
-resource "google_compute_instance" "app" {
+resource "google_compute_instance" "mongo" {
+  name = "mongo"
+  machine_type = "f1-micro"
+  zone = "europe-west4-a"
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-mongo-ntikhomirov"
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config{
+    }
+  }
+}
+
+resource "google_compute_instance" "puma1" {
+  name = "puma1"
+  machine_type = "f1-micro"
+  zone = "europe-west4-a"
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-puma-ntikhomirov"
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config{
+    }
+  }
+}
+
+resource "google_compute_instance" "puma2" {
+  name = "puma2"
+  machine_type = "f1-micro"
+  zone = "europe-west4-a"
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-puma-ntikhomirov"
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config{
+    }
+  }
+}
+
+
+resource "google_compute_instance" "nginx" {
   name = "nginx"
   machine_type = "f1-micro"
   zone = "europe-west4-a"

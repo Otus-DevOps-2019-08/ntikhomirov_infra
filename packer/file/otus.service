@@ -7,7 +7,7 @@ After=network.target
 Type=simple
 
 WorkingDirectory=/home/tihomirovnv/app/reddit
-ExecStart=/usr/local/bin/puma -b tcp://0.0.0.0:9292
+ExecStart=/usr/local/bin/puma -b tcp://0.0.0.0:8080
 
 Restart=always
 

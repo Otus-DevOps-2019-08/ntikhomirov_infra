@@ -10,7 +10,7 @@
         {
             "type": "googlecompute",
             "project_id": "{{user `project_id`}}",
-            "image_name": "ubuntu-puma-{{timestamp}}",
+            "image_name": "ubuntu-puma-ntikhomirov",
             "image_family": "reddit-full",
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "{{user `zone`}}",
