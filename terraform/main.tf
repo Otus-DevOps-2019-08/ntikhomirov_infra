@@ -24,6 +24,12 @@ resource "google_compute_instance" "mongo" {
   network_interface {
     network = "default"
   }
+  
+  metadata = {
+    # путь до публичного ключа
+    ssh-keys = "appuser:${file("/home/ntikhomirov/.ssh/appuser.pub")}\nappuser2:${file("/home/ntikhomirov/.ssh/appuser2.pub")}"
+  }
+
 }
 
 resource "google_compute_instance" "puma1" {
@@ -39,6 +45,11 @@ resource "google_compute_instance" "puma1" {
   network_interface {
     network = "default"
   }
+  metadata = {
+    # путь до публичного ключа
+    ssh-keys = "appuser:${file("/home/ntikhomirov/.ssh/appuser.pub")}\nappuser2:${file("/home/ntikhomirov/.ssh/appuser2.pub")}"
+  }
+
 }
 
 resource "google_compute_instance" "puma2" {
@@ -54,6 +65,11 @@ resource "google_compute_instance" "puma2" {
   network_interface {
     network = "default"
   }
+  metadata = {
+    # путь до публичного ключа
+    ssh-keys = "appuser:${file("/home/ntikhomirov/.ssh/appuser.pub")}\nappuser2:${file("/home/ntikhomirov/.ssh/appuser2.pub")}"
+  }
+
 }
 
 
@@ -76,6 +92,12 @@ resource "google_compute_instance" "nginx" {
         public_ptr_domain_name = ""
      }
 
-    }
+  }
+  
+  metadata = {
+    # путь до публичного ключа
+    ssh-keys = "appuser:${file("/home/ntikhomirov/.ssh/appuser.pub")}\nappuser2:${file("/home/ntikhomirov/.ssh/appuser2.pub")}"
+  }
+
 }
 
