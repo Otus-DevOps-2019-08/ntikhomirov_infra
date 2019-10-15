@@ -14,6 +14,7 @@ provider "google" {
 resource "google_compute_address" "nginx" {
   name = "otus"
   address = "35.204.41.14"
+  region = "europe-west4-a" 
 }
 
 resource "google_compute_instance" "mongo" {
