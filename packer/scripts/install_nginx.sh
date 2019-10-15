@@ -12,5 +12,4 @@ mv /tmp/privkey.pem /etc/nginx/ssl
 
 mv /tmp/fullchain.pem /etc/nginx/ssl
 
-
 sudo systemctl enable nginx
