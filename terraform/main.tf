@@ -11,6 +11,11 @@ provider "google" {
 }
 
 
+resource "google_compute_address" "nginx" {
+  name = "otus"
+  address = "35.204.41.14"
+}
+
 resource "google_compute_instance" "mongo" {
   name = "mongo"
   machine_type = "f1-micro"
@@ -58,9 +63,11 @@ resource "google_compute_instance" "puma2" {
   network_interface {
     network = "default"
     access_config{
+      nat_ip = null
     }
   }
 }
+
 
 
 resource "google_compute_instance" "nginx" {
@@ -76,6 +83,7 @@ resource "google_compute_instance" "nginx" {
   network_interface {
     network = "default"
     access_config{
+      nat_ip = "${google_compute_address.nginx.address}"
     }
   }
 }
