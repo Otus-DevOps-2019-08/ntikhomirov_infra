@@ -11,14 +11,6 @@ provider "google" {
 }
 
 
-resource "google_compute_address" "external" {
-  count        = "${35.204.41.14 ? 1 : 0}"
-  name         = "otus"
-  address_type = "EXTERNAL"
-  region       = "europe-west4-a"
-}
-
-
 resource "google_compute_instance" "mongo" {
   name = "mongo"
   machine_type = "f1-micro"
@@ -31,8 +23,6 @@ resource "google_compute_instance" "mongo" {
 
   network_interface {
     network = "default"
-    access_config{
-    }
   }
 }
 
@@ -48,8 +38,6 @@ resource "google_compute_instance" "puma1" {
 
   network_interface {
     network = "default"
-    access_config{
-    }
   }
 }
 
@@ -65,9 +53,6 @@ resource "google_compute_instance" "puma2" {
 
   network_interface {
     network = "default"
-    access_config{
-      nat = ""
-    }
   }
 }
 
@@ -86,7 +71,11 @@ resource "google_compute_instance" "nginx" {
   network_interface {
     network = "default"
     access_config{
-      nat_ip = "${element(concat(google_compute_address.external.*.address, list("")), 0)}"
+        nat_ip = "34.90.19.140"
+        network_tier =  "PREMIUM"
+        public_ptr_domain_name = ""
+     }
+
     }
-  }
 }
+
