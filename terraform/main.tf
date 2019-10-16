@@ -46,7 +46,7 @@ resource "google_compute_instance" "mongo" {
 
 resource "google_compute_instance" "puma" {
   count = "${var.count_puma}"
-  name = "puma-${var.count_puma.index}"
+  name = "puma-${count.index}"
   machine_type = "f1-micro"
   zone = "${var.region}"
   boot_disk {
