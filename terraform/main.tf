@@ -6,11 +6,11 @@ terraform {
 provider "google" {
 
   version = "2.15"
-  project = "indigo-almanac-254221"
-  region = "europe-west4-a"
+  project = "${var.project_id}"
+  region = "${var.region}"
 }
 
-
+#Создаем правила фаервола (отклонение от ДЗ)
 resource "google_compute_firewall" "firewall_nginx" {
   name = "allow-nginx-default"
   network = "default"
@@ -22,10 +22,11 @@ resource "google_compute_firewall" "firewall_nginx" {
   target_tags = ["reddit-nginx"]
 }
 
+
 resource "google_compute_instance" "mongo" {
   name = "mongo"
   machine_type = "f1-micro"
-  zone = "europe-west4-a"
+  zone = "${var.region}"
   boot_disk {
     initialize_params {
       image = "ubuntu-mongodb-ntikhomirov"
@@ -38,16 +39,16 @@ resource "google_compute_instance" "mongo" {
 
   metadata = {
     # путь до публичного ключа
-    ssh-keys = "appuser:${file(var.public_key_path)} \n appuser2:${file(var.public_key_path)}"
+    ssh-keys = "appuser:${file(var.public_key_path)}\nappuser2:${file(var.public_key_path)}"
   }
 
 }
 
 resource "google_compute_instance" "puma" {
-  count = 2
-  name = "puma"
+  count = "${var.count_puma}"
+  name = "puma-${var.count_puma.index}"
   machine_type = "f1-micro"
-  zone = "europe-west4-a"
+  zone = "${var.region}"
   boot_disk {
     initialize_params {
       image = "ubuntu-puma-ntikhomirov"
@@ -59,38 +60,16 @@ resource "google_compute_instance" "puma" {
   }
   metadata = {
     # путь до публичного ключа
-    ssh-keys = "appuser:${file(var.public_key_path)} \n appuser2:${file(var.public_key_path)}"
+    ssh-keys = "appuser:${file(var.public_key_path)}\nappuser2:${file(var.public_key_path)}"
 
   }
-
-  connection {
-      type         = "ssh"
-      user         = "ntikhomirov"
-      agent        = true
-      host         = "puma"
-      port         = 22
-      bastion_host = "otus.nt33.ru"
-      bastion_user = "ntikhomirov"
-      bastion_port = 22
-      private_key = "${file(var.private_key_path)}"
-  }
-
-  provisioner "file" {
-    source      = "files/puma.service"
-    destination = "/tmp/puma.service"
-  }
-
-  provisioner "remote-exec" {
-    script = "files/deploy.sh"
-  }
-
 }
 
 
 resource "google_compute_instance" "nginx" {
   name = "nginx"
   machine_type = "f1-micro"
-  zone = "europe-west4-a"
+  zone = "${var.region}"
   tags = ["http-server","https-server","reddit-nginx"]
   boot_disk {
     initialize_params {
@@ -110,8 +89,31 @@ resource "google_compute_instance" "nginx" {
 
   metadata = {
     # путь до публичного ключа
-    ssh-keys = "appuser:${file(var.public_key_path)} \n appuser2:${file(var.public_key_path)}"
+    ssh-keys = "appuser:${file(var.public_key_path)}\nappuser2:${file(var.public_key_path)}"
 
+  }
+
+  connection {
+      type         = "ssh"
+      user         = "{$var.user}"
+      agent        = false
+      host         = "nginx"
+      port         = 22
+      private_key = "${file(var.private_key_path)}"
+  }
+
+  provisioner "file" {
+    source      = "file/nginx.py"
+    destination = "/tmp/nginx.py"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/nginx.py",
+      "/tmp/nginx.py ${var.count_puma}",
+      "sudo cp /tmp/upstream.conf /etc/nginx/conf.d/",
+      "sudo systemctl reload nginx"
+    ]
   }
 
 }

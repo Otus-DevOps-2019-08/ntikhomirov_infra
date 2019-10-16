@@ -99,3 +99,17 @@ PUMA_PORT = 8080 (Оставил на всякий пожарный, можно 
  - Производим подготовку окружения для сдачи ДЗ№6.
 
 ## Примечание к ДЗ№6
+Как болучить доступ через бастион хоста
+```
+  connection {
+      type         = "ssh"
+      user         = "ntikhomirov"
+      agent        = true
+      host         = "puma"
+      port         = 22
+      bastion_host = "otus.nt33.ru"
+      bastion_user = "ntikhomirov"
+      bastion_port = 22
+      private_key = "${file(var.private_key_path)}"
+  }
+```
