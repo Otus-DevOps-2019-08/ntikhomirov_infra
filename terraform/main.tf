@@ -106,12 +106,20 @@ resource "google_compute_instance" "nginx" {
     destination = "/tmp/nginx.py"
   }
 
+  provisioner "file" {
+    source      = "files/monitor.py"
+    destination = "/tmp/monitor.py"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/nginx.py",
-      "/tmp/nginx.py ${var.count_puma}",
+      "python /tmp/nginx.py ${var.count_puma}",
       "sudo cp /tmp/upstream.conf /etc/nginx/conf.d/",
-      "sudo systemctl reload nginx",
+      "sed -i 's/COUNT_ID/${var.count_puma}/g' /tmp/monitor.py",
+      "sudo cp /tmp/monitor.py /opt/www/monitor/cgi-bin",
+      "sudo chown -R www-data:www-data /opt/www/monitor/cgi-bin/monitor.py",
+      "sudo systemctl start nginx"
     ]
   }
 
