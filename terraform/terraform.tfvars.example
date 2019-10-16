@@ -1,5 +1,16 @@
-project = "your_project_id"
-public_key_path = "~/.ssh/appuser.pub"
+#Идентификатор проекта в GPC
+project_id = "indigo-almanac"
+
+#Расположения ЦОД
+region = "europe"
+
+#Образы для развертывания
+image_name = {
+  "nginx" = "ubuntu-nginx-ntikhomirov",
+  "mongo" = "ubuntu-mongodb-ntikhomirov",
+  "puma"  = "ubuntu-puma-ntikhomirov"
+}
+count_puma = 4
+user = "appuser"
 private_key_path = "~/.ssh/appuser"
-disk_image = "reddit-base"
-instances_count  = 2
+public_key_path = "~/.ssh/appuser.pub"
