@@ -1,8 +1,8 @@
 resource "google_compute_instance_group" "default" {
   name = "puma-group"
-  zone = var.zone
+  zone = "${var.region}"
 
-  instances = "${google_compute_instance.default.*.self_link}"
+  instances = "${google_compute_instance.puma.*.self_link}"
 
   named_port {
     name = "http"
@@ -17,7 +17,7 @@ resource "google_compute_global_address" "default" {
 resource "google_compute_global_forwarding_rule" "default" {
   name       = "puma-rule"
   target     = "${google_compute_target_http_proxy.default.self_link}"
-  port_range = "8080"
+  port_range = "80"
 }
 
 resource "google_compute_target_http_proxy" "default" {
