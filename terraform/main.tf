@@ -95,15 +95,14 @@ resource "google_compute_instance" "nginx" {
 
   connection {
       type         = "ssh"
-      user         = "{$var.user}"
+      user         = "tihomirovnv"
       agent        = false
-      host         = "nginx"
-      port         = 22
+      host         = self.network_interface[0].access_config[0].nat_ip
       private_key = "${file(var.private_key_path)}"
   }
 
   provisioner "file" {
-    source      = "file/nginx.py"
+    source      = "files/nginx.py"
     destination = "/tmp/nginx.py"
   }
 
@@ -112,7 +111,7 @@ resource "google_compute_instance" "nginx" {
       "chmod +x /tmp/nginx.py",
       "/tmp/nginx.py ${var.count_puma}",
       "sudo cp /tmp/upstream.conf /etc/nginx/conf.d/",
-      "sudo systemctl reload nginx"
+      "sudo systemctl reload nginx",
     ]
   }
 
