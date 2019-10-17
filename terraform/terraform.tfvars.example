@@ -1,0 +1,16 @@
+#Идентификатор проекта в GPC
+project_id = "indigo-almanac"
+
+#Расположения ЦОД
+region = "europe"
+
+#Образы для развертывания
+image_name = {
+  "nginx" = "ubuntu-nginx-ntikhomirov",
+  "mongo" = "ubuntu-mongodb-ntikhomirov",
+  "puma"  = "ubuntu-puma-ntikhomirov"
+}
+count_puma = 4
+user = "appuser"
+private_key_path = "~/.ssh/appuser"
+public_key_path = "~/.ssh/appuser.pub"
