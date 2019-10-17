@@ -29,7 +29,7 @@ resource "google_compute_instance" "mongo" {
   zone = "${var.region}"
   boot_disk {
     initialize_params {
-      image = "ubuntu-mongodb-ntikhomirov"
+      image = "${var.image_name.mongo}"
     }
   }
 
@@ -51,7 +51,7 @@ resource "google_compute_instance" "puma" {
   zone = "${var.region}"
   boot_disk {
     initialize_params {
-      image = "ubuntu-puma-ntikhomirov"
+      image = "${var.image_name.puma}"
     }
   }
 
@@ -73,7 +73,7 @@ resource "google_compute_instance" "nginx" {
   tags = ["http-server","https-server","reddit-nginx"]
   boot_disk {
     initialize_params {
-      image = "ubuntu-nginx-ntikhomirov"
+      image = "${var.image_name.nginx}"
     }
   }
 
