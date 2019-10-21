@@ -29,12 +29,12 @@ resource "google_compute_instance" "nginx" {
   }
 
   provisioner "file" {
-    source      = "modules/files/nginx.py"
+    source      = "modules/nginx/files/nginx.py"
     destination = "/tmp/nginx.py"
   }
 
   provisioner "file" {
-    source      = "modules/files/monitor.py"
+    source      = "modules/nginx/files/monitor.py"
     destination = "/tmp/monitor.py"
   }
 
