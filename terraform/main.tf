@@ -48,6 +48,8 @@ module "nginx" {
 
   private_key_path = "${var.private_key_path}"
 
+  public_key_path = "${var.public_key_path}"
+
   count_puma = "${var.count_puma}"
 
 }
