@@ -1,6 +1,6 @@
 resource "google_compute_instance" "puma" {
   count = "${var.count_puma}"
-  name = "puma-${stand}-${count.index}"
+  name = "puma-${var.stand}-${count.index}"
   machine_type = "f1-micro"
   zone = "${var.region}"
   boot_disk {
