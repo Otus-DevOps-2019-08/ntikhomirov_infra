@@ -21,3 +21,9 @@ variable stand{
 variable private_key_path {
   description = "Path to the private key used for ssh access"
 }
+
+#Колличество установлемых инстантов
+variable count_puma {
+  description = "Колличество устанавливаемых инстантов"
+  default = 1
+}
