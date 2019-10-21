@@ -14,7 +14,7 @@ variable public_key_path {
 }
 
 variable private_key_path {
-description = "Path to the private key used for ssh access"
+  description = "Path to the private key used for ssh access"
 }
 
 #Колличество установлемых инстантов
