@@ -26,5 +26,5 @@ variable count_puma {
 #принадлежность к среде развертывания
 variable stand {
  description = "Принадлежность к среде исполнения"
- default = 'test'
+ default = "test"
 }
