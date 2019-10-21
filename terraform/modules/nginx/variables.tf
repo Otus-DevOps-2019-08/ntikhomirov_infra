@@ -13,8 +13,11 @@ variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
 
-variable count_puma {
+variable stand{
+  description = "Вид создаваемой среды"
+  default = "test"
 }
 
-variable image_name {
+variable private_key_path {
+  description = "Path to the private key used for ssh access"
 }
