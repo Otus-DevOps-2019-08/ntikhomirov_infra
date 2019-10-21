@@ -24,7 +24,7 @@ resource "google_compute_instance" "nginx" {
       type         = "ssh"
       user         = "tihomirovnv"
       agent        = false
-      host         = ""
+      host         = "nginx-${var.stand}"
       private_key = "${file(var.private_key_path)}"
   }
 

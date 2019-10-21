@@ -38,3 +38,16 @@ module "puma" {
   count_puma = "${var.count_puma}"
 
 }
+
+module "nginx" {
+  source = "./modules/nginx"
+
+  image_name = "${var.image_name.nginx}"
+
+  region = "${var.region}"
+
+  private_key_path = "${var.private_key_path}"
+
+  count_puma = "${var.count_puma}"
+
+}
