@@ -23,3 +23,16 @@ module "mongodb" {
   public_key_path = "${var.public_key_path}"
 
 }
+
+module "puma" {
+  source = "./modules/app"
+
+  image_name = "${var.image_name.puma}"
+
+  region = "${var.region}"
+
+  public_key_path = "${var.public_key_path}"
+
+  private_key_path = "${var.private_key_path}"
+
+}

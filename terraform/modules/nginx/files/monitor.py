@@ -24,7 +24,6 @@ def check_socket(host, port):
 
 ping("nginx")
 check_socket("nginx",80)
-check_socket("nginx",443)
 
 ping("mongo")
 check_socket("mongo",27017)

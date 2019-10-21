@@ -13,8 +13,18 @@ variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
 
-variable count_puma {
+variable private_key_path {
+description = "Path to the private key used for ssh access"
 }
 
-variable image_name {
+#Колличество установлемых инстантов
+variable count_puma {
+  description = "Колличество устанавливаемых инстантов"
+  default = 1
+}
+
+#принадлежность к среде развертывания
+variable stand {
+ description = "Принадлежность к среде исполнения"
+ default = 'test'
 }
