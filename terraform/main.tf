@@ -14,7 +14,7 @@ provider "google" {
 }
 
 module "mongodb" {
-  source = "/modules/db"
+  source = "./modules/db"
 
   image_name = "${var.image_name.mongo}"
 
