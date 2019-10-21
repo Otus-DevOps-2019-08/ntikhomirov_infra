@@ -14,7 +14,7 @@ provider "google" {
 }
 
 module "mongodb" {
-  source = "./modules/db"
+  source = "./../modules/db"
 
   image_name = "${var.image_name.mongo}"
 
@@ -25,7 +25,7 @@ module "mongodb" {
 }
 
 module "puma" {
-  source = "./modules/app"
+  source = "./../modules/app"
 
   image_name = "${var.image_name.puma}"
 
@@ -40,7 +40,7 @@ module "puma" {
 }
 
 module "nginx" {
-  source = "./modules/nginx"
+  source = "./../modules/nginx"
 
   image_name = "${var.image_name.nginx}"
 
