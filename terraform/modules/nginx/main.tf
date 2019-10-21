@@ -1,8 +1,8 @@
 resource "google_compute_instance" "nginx" {
-  name = "nginx"
+  name = "nginx-${var.stand}"
   machine_type = "f1-micro"
   zone = "${var.region}"
-  tags = ["http-server","https-server","reddit-nginx"]
+  tags = ["reddit-nginx"]
   boot_disk {
     initialize_params {
       image = "${var.image_name}"
@@ -11,11 +11,6 @@ resource "google_compute_instance" "nginx" {
 
   network_interface {
     network = "default"
-    access_config{
-        nat_ip = "34.90.19.140"
-        network_tier =  "PREMIUM"
-        public_ptr_domain_name = ""
-     }
 
   }
 
@@ -29,7 +24,7 @@ resource "google_compute_instance" "nginx" {
       type         = "ssh"
       user         = "tihomirovnv"
       agent        = false
-      host         = self.network_interface[0].access_config[0].nat_ip
+      host         = ""
       private_key = "${file(var.private_key_path)}"
   }
 

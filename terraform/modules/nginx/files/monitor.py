@@ -4,7 +4,7 @@ import os
 import socket
 from contextlib import closing
 var=COUNT_ID
-
+pref="PREF"
 def ping(hostname):
    response = os.system("ping -c 1 " + hostname)
    if response == 0:
@@ -22,12 +22,12 @@ def check_socket(host, port):
                          print (host, ":", port, "Port is not open")
 
 
-ping("nginx")
-check_socket("nginx",80)
+ping("nginx-" + pref)
+check_socket("nginx-" + pref,80)
 
-ping("mongo")
-check_socket("mongo",27017)
+ping("mongo-" + pref)
+check_socket("mongo-" + pref,27017)
 
 for x in range(var):
-  ping("puma-" + str(x))
-  check_socket("puma-" + str(x),8080)
+  ping("puma-" + pref + str(x))
+  check_socket("puma-" + pref + "-" + str(x),8080)
