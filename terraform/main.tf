@@ -35,4 +35,6 @@ module "puma" {
 
   private_key_path = "${var.private_key_path}"
 
+  count_puma = "${var.count_puma}"
+
 }
