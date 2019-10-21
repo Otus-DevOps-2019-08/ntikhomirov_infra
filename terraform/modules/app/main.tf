@@ -23,7 +23,7 @@ resource "google_compute_instance" "puma" {
       type         = "ssh"
       user         = "tihomirovnv"
       agent        = true
-      host         = "puma-${stand}-${count.index}"
+      host         = "puma-${var.stand}-${count.index}"
       private_key = "${file(var.private_key_path)}"
       port         = 22
       bastion_host = "otus.nt33.ru"
