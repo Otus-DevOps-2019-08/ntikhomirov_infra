@@ -25,12 +25,10 @@ resource "google_compute_instance" "puma" {
       agent        = true
       host         = "puma-${stand}-${count.index}"
       private_key = "${file(var.private_key_path)}"
-      host         = "puma"
       port         = 22
       bastion_host = "otus.nt33.ru"
       bastion_user = "tihomirovnv"
       bastion_port = 22
-      private_key = "${file(var.private_key_path)}"
   }
 
   provisioner "remote-exec" {
