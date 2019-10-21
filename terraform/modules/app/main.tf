@@ -29,7 +29,7 @@ resource "google_compute_instance" "puma" {
 
   provisioner "remote-exec" {
     inline = [
-      "sed -i 's/mongo-db/mongo-${var.stand}/g' /home/tihomirovnv/app/reddit/app.rb"
+      "sed -i 's/mongo-db/mongo-${var.stand}/g' /home/tihomirovnv/app/reddit/app.rb",
     ]
   }
 }
