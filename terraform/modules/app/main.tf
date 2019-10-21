@@ -23,7 +23,7 @@ resource "google_compute_instance" "puma" {
       type         = "ssh"
       user         = "tihomirovnv"
       agent        = true
-      host         = self.network_interface[0].access_config[0].network
+      host         = "puma-${stand}-${count.index}"
       private_key = "${file(var.private_key_path)}"
       host         = "puma"
       port         = 22
