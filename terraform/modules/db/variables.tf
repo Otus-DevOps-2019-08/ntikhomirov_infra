@@ -12,3 +12,8 @@ variable region{
 variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
+
+variable stand{
+  description = "Вид создаваемой среды"
+  default = "test"
+}
