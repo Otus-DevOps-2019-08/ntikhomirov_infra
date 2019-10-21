@@ -6,6 +6,20 @@ terraform {
 provider "google" {
 
   version = "2.15"
+
   project = "${var.project_id}"
+
   region = "${var.region}"
+
+}
+
+module "mongodb" {
+  source = "/modules/db"
+
+  image_name = "${var.environment}"
+
+  region = "${var.region}"
+
+  public_key_path = "${$var.public_key_path}"
+
 }
