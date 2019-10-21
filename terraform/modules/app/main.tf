@@ -22,13 +22,9 @@ resource "google_compute_instance" "puma" {
   connection {
       type         = "ssh"
       user         = "tihomirovnv"
-      agent        = true
+      agent        = false
       host         = "puma-${var.stand}-${count.index}"
       private_key = "${file(var.private_key_path)}"
-      port         = 22
-      bastion_host = "otus.nt33.ru"
-      bastion_user = "tihomirovnv"
-      bastion_port = 22
   }
 
   provisioner "remote-exec" {
