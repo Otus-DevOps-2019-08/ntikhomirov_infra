@@ -7,9 +7,9 @@ provider "google" {
 
   version = "2.15"
 
-  project = "${var.project_id}"
+  project = "indigo-almanac-254221"
 
-  region = "${var.region}"
+  region = "europe-west4"
 
 }
 
