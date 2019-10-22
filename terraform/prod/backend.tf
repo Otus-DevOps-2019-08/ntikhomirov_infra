@@ -1,6 +1,6 @@
 terraform {
 backend "gcs" {
   bucket  = "storage-ntikhomirovt"
-  prefix  = "terraform/prod"
+  prefix  = "terraform/prod/terraform.tfvars"
 }
 }
