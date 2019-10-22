@@ -2,15 +2,15 @@
 project_id = "indigo-almanac"
 
 #Расположения ЦОД
-region = "europe"
+region = "europe-west4"
 
 #Образы для развертывания
 image_name = {
-  "nginx" = "ubuntu-nginx-ntikhomirov",
-  "mongo" = "ubuntu-mongodb-ntikhomirov",
-  "puma"  = "ubuntu-puma-ntikhomirov"
+  "nginx" = "ubuntu-nginx",
+  "mongo" = "ubuntu-mongodb",
+  "puma"  = "ubuntu-puma"
 }
-count_puma = 4
-user = "appuser"
-private_key_path = "~/.ssh/appuser"
-public_key_path = "~/.ssh/appuser.pub"
+count_puma = 3
+user = "tihomirovnv"
+private_key_path = "~/.ssh/user"
+public_key_path = "~/.ssh/user.pub"
