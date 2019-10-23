@@ -25,6 +25,7 @@ variable count_puma {
 variable image_name {
 }
 
-variable zone {
-  default = "europe-west1"
+
+variable stand {
+  default="test"
 }

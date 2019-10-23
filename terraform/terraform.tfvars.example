@@ -14,3 +14,5 @@ count_puma = 4
 user = "appuser"
 private_key_path = "~/.ssh/appuser"
 public_key_path = "~/.ssh/appuser.pub"
+
+zone = "europe-west1"
