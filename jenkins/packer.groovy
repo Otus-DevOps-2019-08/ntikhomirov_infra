@@ -7,7 +7,7 @@ def config = [:]
 config['varfile'] = "/opt/secret/value.json"
 config['nginx'] = "nginx.json"
 config['mogodb'] = "db.json"
-config['puma'] = "app.json"
+config['app'] = "app.json"
 
 
 /*  --- Блок конфигурации --- */
