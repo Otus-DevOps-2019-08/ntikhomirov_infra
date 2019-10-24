@@ -29,5 +29,5 @@ ping("mongo-" + pref)
 check_socket("mongo-" + pref,27017)
 
 for x in range(var):
-  ping("puma-" + pref + str(x))
+  ping("puma-" + pref + "-" + str(x))
   check_socket("puma-" + pref + "-" + str(x),8080)
