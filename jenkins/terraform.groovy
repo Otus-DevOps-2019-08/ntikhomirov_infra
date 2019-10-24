@@ -5,10 +5,6 @@ global['varfile'] = "/opt/secret/terraform.tfvars"
 global['git-url'] = "https://github.com/Otus-DevOps-2019-08/ntikhomirov_infra.git"
 global['branch'] = ""
 
-def image = [:]
-image['nginx'] = 'ubuntu-nginx-ntikhomirov'
-image['app'] = 'ubuntu-puma-ntikhomirov'
-image['mongodb'] = 'ubuntu-mongodb-ntikhomirov'
 
 /*  --- Блок конфигурации --- */
 
@@ -55,7 +51,7 @@ config['branch'] = env.BRANCH
 stage('Подготовка'){
   //Добавляем
     node('master'){
-      downloadRepo()
+      downloadRepo(global)
       if(!env.DELETE.toBoolean()){
         validateVM(global, env.STAND)
       }
