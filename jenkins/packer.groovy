@@ -7,7 +7,7 @@ def config = [:]
 config['varfile'] = "/opt/secret/value.json"
 config['nginx'] = "nginx.json"
 config['mogodb'] = "db.json"
-config['app'] = "app.json"
+config['appфзз'] = "app.json"
 
 
 /*  --- Блок конфигурации --- */
@@ -42,7 +42,7 @@ def createImage(config, image_name){
 stage('Подготовка'){
   //Удаление образа
   if(env.DELETE.toBoolean() || env.CREATE.toBoolean()){
-     deleteImage(iamge[env.IMAGE])
+     deleteImage(image[env.IMAGE])
   }
 }
 
