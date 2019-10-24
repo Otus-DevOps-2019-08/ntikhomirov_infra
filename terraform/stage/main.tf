@@ -22,6 +22,8 @@ module "mongodb" {
 
   public_key_path = "${var.public_key_path}"
 
+  stand = "${var.stand}"
+
 }
 
 module "puma" {
@@ -37,6 +39,8 @@ module "puma" {
 
   count_puma = "${var.count_puma}"
 
+  stand = "${var.stand}"
+
 }
 
 module "nginx" {
@@ -51,5 +55,7 @@ module "nginx" {
   public_key_path = "${var.public_key_path}"
 
   count_puma = "${var.count_puma}"
+
+  stand = "${var.stand}"
 
 }
