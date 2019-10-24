@@ -31,7 +31,7 @@ def startVM(config, stand){
 //Проверка экземляра
 def validateVM(config, stand){
     echo "Проверка конфигурации экземляра"
-    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + " init \n " + config['terraform'] +  " get -update \n " + config['terraform'] + " validate -auto-approve -var-file=" + config['varfile']
+    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + " init \n " + config['terraform'] +  " get -update \n " + config['terraform'] + " validate -var-file=" + config['varfile']
 }
 
 //Выкачиваем репозитория
