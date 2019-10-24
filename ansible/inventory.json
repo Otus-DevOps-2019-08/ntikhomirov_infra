@@ -12,9 +12,9 @@
     "hosts": {
         "dbserver": {
             "ansible_host": {
-              mongo-prod: null
+              "mongo-prod": null
              }
          }
      }
    }
-}    
+}

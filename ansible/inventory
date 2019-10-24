@@ -3,4 +3,4 @@ appserver ansible_host=puma-prod-0
 [db]
 dbserver ansible_host=mongo-prod
 [nginx]
-nginx ansible_host=nginx-prod
+nginxserver ansible_host=nginx-prod
