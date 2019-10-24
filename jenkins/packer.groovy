@@ -29,7 +29,8 @@ def deleteImage(image_name){
 //Создание образа
 def createImage(config, image_name){
     echo "Создаем образ"
-    sh script: "/opt/packer/packer build --var-file=" + config['varfile'] + " ${WORKSPACE}/packer/" + config[image_name]
+    sh script: "cd ${WORKSPACE}/packer/
+                /opt/packer/packer build --var-file=" + config['varfile'] + " " + config[image_name]
 }
 
 //Выкачиваем репозитория
