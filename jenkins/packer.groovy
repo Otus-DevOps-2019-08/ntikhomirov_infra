@@ -34,12 +34,22 @@ def createImage(config, image_name){
     sh script: "/opt/packer/packer build --var-file=" + config['varfile'] + " " + config[image_name]
 }
 
+//Выкачиваем репозитория
+def downloadRepo(){
+git(
+   url: 'https://github.com/Otus-DevOps-2019-08/ntikhomirov_infra.git',
+   branch: "ansible-1"
+)
+}
+
 /*  --- Магия деплоя (функции) --- */
 
 
 /*  --- Деплой --- */
 
 stage('Подготовка'){
+  //Добавляем
+    downloadRepo()
   //Удаление образа
   if(env.DELETE.toBoolean() || env.CREATE.toBoolean()){
      deleteImage(image[env.IMAGE])
