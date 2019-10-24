@@ -46,7 +46,7 @@ git(
 
 
 /*  --- Деплой --- */
-config['branch'] = env.BRANCH
+global['branch'] = env.BRANCH
 
 stage('Подготовка'){
   //Добавляем
