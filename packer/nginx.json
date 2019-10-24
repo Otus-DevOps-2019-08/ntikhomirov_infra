@@ -42,16 +42,6 @@
           "source": "file/monitor.py",
           "destination": "/tmp/"
         },
-        {
-          "type": "file",
-          "source": "file/privkey.pem",
-          "destination": "/tmp/"
-        },
-        {
-          "type": "file",
-          "source": "file/fullchain.pem",
-          "destination": "/tmp/"
-        },
 
         {
           "type": "shell",
