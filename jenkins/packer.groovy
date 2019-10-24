@@ -19,8 +19,7 @@ def deleteImage(image_name){
 
   echo 'Удаления образа - ' + image_name
   try {
-    sh script: "cd ./packer"
-    sh script: "gcloud computer images delete " + image_name + " --quite"
+    sh script: "gcloud compute images delete " + image_name + " --quite"
   }catch(Exception e){
         echo 'Образ ' + image_name + " отсутствует в системе"
   }
