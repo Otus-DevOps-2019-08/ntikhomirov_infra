@@ -69,7 +69,7 @@ stage('Подготовка'){
 stage('Создание'){
   if(env.CREATE.toBoolean()){
     node('master'){
-      createImage(global,env.STAND)
+      startVM(global,env.STAND)
     }
   }
 }
