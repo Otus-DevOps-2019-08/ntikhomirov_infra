@@ -19,7 +19,7 @@ def deleteImage(image_name){
 
   echo 'Удаления образа - ' + image_name
   try {
-    sh script: "gcloud compute images delete " + image_name + " --quite"
+    sh script: "gcloud compute images delete " + image_name + " --quiet"
   }catch(Exception e){
         echo 'Образ ' + image_name + " отсутствует в системе"
   }
@@ -29,8 +29,7 @@ def deleteImage(image_name){
 //Создание образа
 def createImage(config, image_name){
     echo "Создаем образ"
-    sh script: "cd ./packer"
-    sh script: "/opt/packer/packer build --var-file=" + config['varfile'] + " " + config[image_name]
+    sh script: "/opt/packer/packer build --var-file=" + config['varfile'] + " ${WORKSPACE}/packer/" + config[image_name]
 }
 
 //Выкачиваем репозитория
