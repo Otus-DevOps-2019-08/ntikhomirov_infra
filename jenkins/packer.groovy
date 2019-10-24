@@ -49,16 +49,23 @@ git(
 
 stage('Подготовка'){
   //Добавляем
-    downloadRepo()
+    node('master'){
+      downloadRepo()
+    }
+
   //Удаление образа
   if(env.DELETE.toBoolean() || env.CREATE.toBoolean()){
-     deleteImage(image[env.IMAGE])
+     node('master'){
+      deleteImage(image[env.IMAGE])
+     }
   }
 }
 
 stage('Создание'){
   if(env.CREATE.toBoolean()){
-    createImage(config,env.IMAGE)
+    node('master'){
+      createImage(config,env.IMAGE)
+    }
   }
 }
 
