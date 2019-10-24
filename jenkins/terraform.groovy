@@ -15,7 +15,7 @@ global['branch'] = ""
 def destroy(config, stand){
   echo 'Удаление окружения - ' + stand
   try {
-    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + ' destroy -auto-approve -var-file=' + config['varfile']
+    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + '  destroy -auto-approve -var-file=' + config['varfile']
   }catch(Exception e){
         echo "Окружение " + stand + " не может быть найдено или удалено!"
   }
@@ -25,13 +25,13 @@ def destroy(config, stand){
 //Запуск экземляра
 def startVM(config, stand){
     echo "Создание и запуск экземляра"
-    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + " get -update \n " + config['terraform'] + " apply -auto-approve -var-file=" + config['varfile']
+    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + " init -backend=false \n " +  config['terraform'] + " get -update \n " + config['terraform'] + " apply -auto-approve -var-file=" + config['varfile']
 }
 
 //Проверка экземляра
 def validateVM(config, stand){
     echo "Проверка конфигурации экземляра"
-    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + " get -update \n " + config['terraform'] + " validate -auto-approve -var-file=" + config['varfile']
+    sh script: "cd ${WORKSPACE}/terraform/${stand}/ \n " + config['terraform'] + " init -backend=false \n " + config['terraform'] +  " get -update \n " + config['terraform'] + " validate -auto-approve -var-file=" + config['varfile']
 }
 
 //Выкачиваем репозитория
