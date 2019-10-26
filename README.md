@@ -5,6 +5,7 @@
 [Домашня работа №5](#HW5)   
 [Домашня работа №6](#HW6)        
 [Домашня работа №7](#HW7)
+[Домашня работа №8](#HW8)
 <a name="HW2"></a>
 ## Примечание к ДЗ№2
 1. Travis
@@ -125,12 +126,54 @@ PUMA_PORT = 8080 (Оставил на всякий пожарный, можно 
 ```
 <a name="HW7"></a>
 ## План ДЗ№7
- - Перетаскиваем все на jenkins (8h)
- - Производим подготовку окружение к cдачи ДЗ№7 (12h)
-Перетащил все окружение на винртуальную машину с jenkins в облако google  
-Разобрался как работаю и пишутся модули.
-Не совсем понял что хотят во втором задание, но судя по контексту, либо произвести конфигурацию через бастион хост, либо чтоб провиженер стал не много интелектуальным и имел управление, сделал как посчитл правильным.
+Развернул jenkins по адресу - https://otus.nt33.ru/jenkins (надоело выполнять команды руками и так меньше привязан к рабочему месту)
 
-https://otus.nt33.ru/jenkins   
-https://otus.nt33.ru/
-https://otus.nt33.ru:4443/  
+сделал 4 jobs (3 - Packer, 1 - terraform)
+
+2 ЗАДАНИЕ СО * не особо понял, сделал как "додумал" сам.
+
+connection {
+type = "ssh"
+user = "tihomirovnv"
+agent = false
+host = "puma-${var.stand}-${count.index}"
+private_key = "${file(var.private_key_path)}"
+}
+
+provisioner "remote-exec" {
+inline = [
+"sudo /bin/sed -i 's/mongo-db/mongo-${var.stand}/g' /home/tihomirovnv/app/reddit/app.rb",
+"sudo systemctl restart otus"
+]
+}
+}
+
+Так как имя хоста за ранее известно (mongo-${var.stand}), то зачем его где-то в переменную закидывать?
+Возможно во втором задание подразумевалось использования бастион хоста, так как jenkins находится в той же системе, то его значение отваливается. (пример использования оставлял в прошлом задании)
+
+Встретил веселую проблему, нехватку квот на CPU (когда машин больше 12)
+
+"Чудный" скрипт мониторинга оставил
+https://otus.nt33.ru:4443/monitor/cgi-bin/monitor.py (остановил одну ноду, для проверки скрипта - puma-test-0 is down!)
+https://otus.nt33.ru/monitor/cgi-bin/monitor.py
+
+Формирования nginx части конфига происходит modulem terraform - nginx.
+Скриптом - terraform\modules\nginx\files\nginx.py
+передается префикс среды и количество нод app.
+на выходе файл - upstream.conf
+
+tihomirovnv@nginx-prod:~$ cat /etc/nginx/conf.d/upstream.conf
+upstream puma_application {
+server puma-prod-0:8080 max_fails=1 fail_timeout=10s;
+}
+
+Поправил юнит (добавил пользователя и группу) - packer\file\otus.service
+
+<a name="HW8"></a>
+## Примечание к ДЗ№8
+- Привет в порядок jobs jenkins  (https://otus.nt33.ru/jenkins), перевел предыдыщие jobs на pipeline:groovy (ознакомиться можно тут ./jenkins/*)
+- Развернул окружение ansible на хосте jenkins в облаке (все подготовил для дальнейшей работы, большой плюс - НЕТ торчащих хостов наружу!)
+- Потренировался с запуском absible-playbook
+- Создал несколько файлов инвентори (в том числе динамический для динамического создание - ./inventory.py)
+- Создал простейший playbook: ping.yaml (ох уэ эта разметка yaml)
+- Продолжаем изучать packer,terraform, ansible, python
