@@ -7,7 +7,7 @@ resource "google_compute_instance" "mongo" {
       image = "${var.image_name}"
     }
   }
-
+  tags = ['db']
   network_interface {
     network = "default"
   }

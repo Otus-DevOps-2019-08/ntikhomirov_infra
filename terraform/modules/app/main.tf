@@ -8,7 +8,7 @@ resource "google_compute_instance" "puma" {
       image = "${var.image_name}"
     }
   }
-
+  tags = ['app']
   network_interface {
     network = "default"
   }
