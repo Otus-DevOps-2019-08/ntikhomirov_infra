@@ -45,7 +45,7 @@ if gce:
                       elif str(i) == 'proxy':
                           inventory['proxy'][instance['name']] = 'null'
 
-    request = service.instances().list_next(previous_request=request, previous_response=response)
+       request = service.instances().list_next(previous_request=request, previous_response=response)
     print(inventory)
 
 else:
