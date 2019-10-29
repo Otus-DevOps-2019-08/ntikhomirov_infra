@@ -30,13 +30,10 @@ if gce:
 
     while request is not None:
         response = request.execute()
-
         #Производим выборку по tags из инстансов которые созданы в gcloud
         for instance in response['items']:
               if 'items' in instance['tags']:
-
                   t = instance['tags']['items']
-
                   for i in t:
                       if str(i)== 'db' :
                           inventory['db'][instance['name']] = 'null'
@@ -44,8 +41,8 @@ if gce:
                           inventory['app'][instance['name']] = 'null'
                       elif str(i) == 'proxy':
                           inventory['proxy'][instance['name']] = 'null'
-
-       request = service.instances().list_next(previous_request=request, previous_response=response)
+                          
+        request = service.instances().list_next(previous_request=request, previous_response=response)
     print(inventory)
 
 else:
