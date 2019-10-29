@@ -2,12 +2,13 @@ resource "google_compute_instance" "mongo" {
   name = "mongo-${var.stand}"
   machine_type = "f1-micro"
   zone = "${var.region}"
+  tags = ['db']
   boot_disk {
     initialize_params {
       image = "${var.image_name}"
     }
   }
-  tags = ['db']
+
   network_interface {
     network = "default"
   }
