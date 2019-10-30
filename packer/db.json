@@ -27,11 +27,6 @@
     ],
     "provisioners": [
         {
-          "type": "shell",
-          "script": "scripts/install.sh",
-          "execute_command": "sudo {{.Path}}"
-        },
-        {
            "type": "ansible",
            "playbook_file": "ansible/packer_db.yml"
          }
