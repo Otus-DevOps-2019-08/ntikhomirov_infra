@@ -36,7 +36,7 @@ def createImage(config, image_name){
 def downloadRepo(){
 git(
    url: 'https://github.com/Otus-DevOps-2019-08/ntikhomirov_infra.git',
-   branch: "ansible-1"
+   branch: env.branch
 )
 }
 
