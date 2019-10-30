@@ -7,10 +7,11 @@
     apt: update_cache=yes
   - name: Upgrade packages
     apt: upgrade=dist
-    
+
 - name: Install MongoDB
   hosts: all
   become: true
+  tasks:  
   - name: Add APT key
     apt_key:
       id: EA312927
