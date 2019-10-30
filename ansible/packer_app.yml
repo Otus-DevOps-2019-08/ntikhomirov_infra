@@ -34,7 +34,7 @@
   - name: bundle install
     bundler:
       state: present
-      chdir: /home/tihomirovnv/app
+      chdir: /home/tihomirovnv/app/reddit
   - name: Add unit file for Puma
     copy:
       src: files/otus.service

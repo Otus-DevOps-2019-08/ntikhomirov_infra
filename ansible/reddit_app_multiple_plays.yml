@@ -26,22 +26,23 @@
       become: true
       copy:
         src: files/puma.service
-        dest: /etc/systemd/system/puma.service
+        dest: /etc/systemd/system/otus.service
       tags: app-tag
-      notify: reload puma
+      notify: reload otus
 
     - name: Add config for DB connection
       template:
         src: templates/db_config.j2
-        dest: /home/appuser/db_config
+        dest: /home/tihomirovnv/app/db_config
       tags: app-tag
 
-    - name: enable puma
+    - name: enable otus
       become: true
-      systemd: name=puma enabled=yes
+      systemd: name=otus enabled=yes
       tags: app-tag
 
   handlers:
-  - name: reload puma
+  - name: reload otus
     become: true
-    systemd: name=puma state=restarted
+    systemd: name=otus state=restarted
+...

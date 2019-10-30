@@ -14,7 +14,7 @@
     - name: Add config for DB connection
       template:
         src: templates/db_config.j2
-        dest: /home/tihomirovnv/db_config
+        dest: /home/tihomirovnv/app/db_config
         owner: tihomirovnv
         group: tihomirovnv
 
