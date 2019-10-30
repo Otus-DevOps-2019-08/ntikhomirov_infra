@@ -11,7 +11,7 @@
 - name: Install MongoDB
   hosts: all
   become: true
-  tasks:  
+  tasks:
   - name: Add APT key
     apt_key:
       id: EA312927
