@@ -12,7 +12,7 @@
   hosts: all
   become: true
   tasks:
-  - name: Install ruby and rubygems and required packages and git
+  - name: Install ruby and rubygems and required packages
     apt: "name={{ item }} state=present"
     with_items:
       - ruby-full
@@ -39,6 +39,5 @@
     copy:
       src: files/otus.service
       dest: /etc/systemd/system/otus.service
-    notify: reload otus
 
 ...
