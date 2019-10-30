@@ -43,9 +43,9 @@
             "execute_command": "sudo {{.Path}}"
           },
           {
-             "type": "shell",
-             "script": "scripts/install_puma.sh",
-             "execute_command": "sudo {{.Path}}"
+             "type": "ansible",
+             "playbook_file": "ansible/packer_app.yml"
+
            }
 
 
