@@ -1,5 +1,12 @@
 #!/usr/bin/env python3.6
-import json
+import os
+import sys
+import argparse
+
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 gce = True
 
@@ -11,40 +18,80 @@ except Exception as e:
     import yaml
     gce = False
 
-inventory = {}
-inventory['db'] = {}
-inventory['app'] = {}
-inventory['proxy'] = {}
+class Inventory(object):
+    gce = ""
+    def __init__(self):
+        self.inventory = {}
+        self.read_cli_args()
+        if self.args.list:
+           self.inventory = self.dynamic_inventory()
+        elif self.args.host:
+           self.inventory = self.empty_inventory()
+        else:
+            self.inventory = self.empty_inventory()
 
-if gce:
-    credentials = GoogleCredentials.get_application_default()
-    service = discovery.build('compute', 'v1', credentials=credentials)
+        print(json.dumps(self.inventory));
 
-    # Возможно надо убрать в конфиг
-    project = 'indigo-almanac-254221'
+    def empty_inventory(self):
+        return {'_meta': {'hostvars': {}}}
 
-    # Возможно надо убрать в конфиг
-    zone = 'europe-west4-a'
 
-    request = service.instances().list(project=project, zone=zone)
+    def dynamic_inventory(self):
+       inventory = {
+           'app': {
+               'hosts': [],
+               'vars': {}
+           },
+           'db': {
+               'hosts': [],
+               'vars': {}
+           },
+           'proxy': {
+               'hosts': [],
+               'vars': {}
+           },
+           '_meta': {
+           }
+       }
+       if gce:
+          credentials = GoogleCredentials.get_application_default()
+          service = discovery.build('compute', 'v1', credentials=credentials)
 
-    while request is not None:
-        response = request.execute()
-        #Производим выборку по tags из инстансов которые созданы в gcloud
-        for instance in response['items']:
-              if 'items' in instance['tags']:
+          # Возможно надо убрать в конфиг
+          project = 'indigo-almanac-254221'
+
+          # Возможно надо убрать в конфиг
+          zone = 'europe-west4-a'
+
+          request = service.instances().list(project=project, zone=zone)
+
+          while request is not None:
+             response = request.execute()
+             #Производим выборку по tags из инстансов которые созданы в gcloud
+             for instance in response['items']:
+               if 'items' in instance['tags']:
                   t = instance['tags']['items']
                   for i in t:
                       if str(i)== 'db' :
-                          inventory['db'][instance['name']] = 'null'
+                          inventory['db']['hosts'].append(instance['name'])
                       elif str(i) == 'app':
-                          inventory['app'][instance['name']] = 'null'
+                          inventory['app']['hosts'].append(instance['name'])
                       elif str(i) == 'proxy':
-                          inventory['proxy'][instance['name']] = 'null'
+                          inventory['proxy']['hosts'].append(instance['name'])
                           
-        request = service.instances().list_next(previous_request=request, previous_response=response)
-    print(inventory)
-
-else:
-    with open('./inventory.yml') as f:
-        print(json.dumps(yaml.load(f)))
+             request = service.instances().list_next(previous_request=request, previous_response=response)
+          
+          return inventory
+       else:
+          with open('./inventory.yml') as f:
+            print(json.dumps(yaml.load(f)))
+            
+    def read_cli_args(self):
+          parser = argparse.ArgumentParser()
+          parser.add_argument('--list', action = 'store_true')
+          parser.add_argument('--host', action = 'store')
+          self.args = parser.parse_args()
+     
+     
+     
+Inventory()
