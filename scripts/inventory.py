@@ -73,8 +73,10 @@ class Inventory(object):
                   t = instance['tags']['items']
                   for i in t:
                       if str(i)== 'db' :
-                          inventory['db']['hosts'].append(instance['name'])
-                          inventory['app']['vars']['db_url'] = instance['networkIP']
+                          inventory['db']['hosts'].append(instance['name'])  
+                          for j in instance['networkInterfaces'] :
+                            inventory['app']['vars']['db_url'] = str(j['networkIP'])
+
                       elif str(i) == 'app':
                           inventory['app']['hosts'].append(instance['name'])
 
