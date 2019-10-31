@@ -181,3 +181,10 @@ server puma-prod-0:8080 max_fails=1 fail_timeout=10s;
 
 <a name="HW9"></a>  
 ## Примечание к ДЗ№9  
+- Написал скрипт который конектится к GCE выбирает хосты по определенным тегам(db,app,nginx) и создает json на выходе для динамического инвентори.(не забыть указывать  GOOGLE_APPLICATION_CREDENTIALS=). Можно ознакомиться тут - scripts/inventory.py
+'''
+-bash-4.2$ ../scripts/inventory.py --list
+{"app": {"hosts": ["puma-prod-0", "puma-prod-1"], "vars": {"db_url": "10.164.0.61"}}, "db": {"hosts": ["mongo-prod"], "vars": {}}, "proxy": {"hosts": ["nginx-prod"], "vars": {}}, "_meta": {}}
+'''
+- Ознакомился с функциональносью ansible
+- Изучил Packer+ansible
