@@ -5,7 +5,7 @@
 [Домашня работа №5](#HW5)   
 [Домашня работа №6](#HW6)        
 [Домашня работа №7](#HW7)  
-[Домашня работа №8](#HW8)
+[Домашня работа №8](#HW8) 
 [Домашня работа №9](#HW9)  
 <a name="HW2"></a>
 ## Примечание к ДЗ№2
@@ -179,12 +179,12 @@ server puma-prod-0:8080 max_fails=1 fail_timeout=10s;
 - Создал простейший playbook: ping.yaml (ох уэ эта разметка yaml)
 - Продолжаем изучать packer,terraform, ansible, python
 
-<a name="HW9"></a>  
-## Примечание к ДЗ№9  
+<a name="HW9"></a>   
+## Примечание к ДЗ№9   
 - Написал скрипт который конектится к GCE выбирает хосты по определенным тегам(db,app,nginx) и создает json на выходе для динамического инвентори.(не забыть указывать  GOOGLE_APPLICATION_CREDENTIALS=). Можно ознакомиться тут - scripts/inventory.py
-'''
+```
 -bash-4.2$ ../scripts/inventory.py --list
 {"app": {"hosts": ["puma-prod-0", "puma-prod-1"], "vars": {"db_url": "10.164.0.61"}}, "db": {"hosts": ["mongo-prod"], "vars": {}}, "proxy": {"hosts": ["nginx-prod"], "vars": {}}, "_meta": {}}
-'''
+```
 - Ознакомился с функциональносью ansible
 - Изучил Packer+ansible
