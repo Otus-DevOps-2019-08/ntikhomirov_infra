@@ -20,7 +20,7 @@
 - name: Configure hosts & deploy application
   hosts: all
   vars:
-   db_host: 10.132.0.2
+   db_host: "{{db_url}}"
   tasks:
     - name: Add unit file for Puma
       become: true
