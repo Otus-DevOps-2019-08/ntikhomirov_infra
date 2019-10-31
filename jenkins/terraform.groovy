@@ -42,6 +42,14 @@ git(
 )
 }
 
+//Запуск конфигураци ansible
+def start_ansible(){
+  echo "Запуск конфигураци обновления mongo-db"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../scripts/inventory.py \n ansible-playbook db.yml -i ../scripts/inventory.py"
+  echo "Запуск конфигураци обновления Puma"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../scripts/inventory.py \n ansible-playbook app.yml -i ../scripts/inventory.py"
+}
+
 /*  --- Магия деплоя (функции) --- */
 
 
@@ -66,10 +74,11 @@ stage('Подготовка'){
   }
 }
 
-stage('Создание'){
+stage('Создание и конфигурация'){
   if(env.CREATE.toBoolean()){
     node('master'){
       startVM(global,env.STAND)
+      start_ansible()
     }
   }
 }
