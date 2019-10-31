@@ -74,24 +74,26 @@ class Inventory(object):
                   for i in t:
                       if str(i)== 'db' :
                           inventory['db']['hosts'].append(instance['name'])
+                          inventory['app']['vars']['db_url'] = instance['networkIP']
                       elif str(i) == 'app':
                           inventory['app']['hosts'].append(instance['name'])
+
                       elif str(i) == 'proxy':
                           inventory['proxy']['hosts'].append(instance['name'])
-                          
+
              request = service.instances().list_next(previous_request=request, previous_response=response)
-          
+
           return inventory
        else:
           with open('./inventory.yml') as f:
             print(json.dumps(yaml.load(f)))
-            
+
     def read_cli_args(self):
           parser = argparse.ArgumentParser()
           parser.add_argument('--list', action = 'store_true')
           parser.add_argument('--host', action = 'store')
           self.args = parser.parse_args()
-     
-     
-     
+
+
+
 Inventory()
