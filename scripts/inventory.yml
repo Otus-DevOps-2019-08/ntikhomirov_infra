@@ -1,0 +1,8 @@
+app:
+  hosts:
+    appserver:
+      ansible_host: puma-prod-0
+db:
+  hosts:
+    dbserver:
+      ansible_host: mongo-prod

@@ -1,0 +1,43 @@
+---
+- name: Update systemd
+  hosts: all
+  become: true
+  tasks:
+  - name: Update apt cache
+    apt: update_cache=yes
+  - name: Upgrade packages
+    apt: upgrade=dist
+
+- name: Install Ruby && Bundler
+  hosts: all
+  become: true
+  tasks:
+  - name: Install ruby and rubygems and required packages
+    apt: "name={{ item }} state=present"
+    with_items:
+      - ruby-full
+      - ruby-bundler
+      - build-essential
+      - git
+  - name: Create directory if they don't exist
+    file:
+      path: /home/tihomirovnv/app
+      state: directory
+      owner: tihomirovnv
+      group: tihomirovnv
+      mode: 0775
+  - name: Git clone app
+    git:
+      repo: https://github.com/express42/reddit.git
+      dest: /home/tihomirovnv/app
+      version: monolith
+  - name: bundle install
+    bundler:
+      state: present
+      chdir: /home/tihomirovnv/app/reddit
+  - name: Add unit file for Puma
+    copy:
+      src: files/otus.service
+      dest: /etc/systemd/system/otus.service
+
+...

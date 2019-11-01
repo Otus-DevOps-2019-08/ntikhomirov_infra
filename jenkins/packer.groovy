@@ -29,14 +29,14 @@ def deleteImage(image_name){
 //Создание образа
 def createImage(config, image_name){
     echo "Создаем образ"
-    sh script: "cd ${WORKSPACE}/packer/ \n /opt/packer/packer build --var-file=" + config['varfile'] + " " + config[image_name]
+    sh script: "cd ${WORKSPACE}/ \n /opt/packer/packer build --var-file=" + config['varfile'] + " " + "packer/" + config[image_name]
 }
 
 //Выкачиваем репозитория
 def downloadRepo(){
 git(
    url: 'https://github.com/Otus-DevOps-2019-08/ntikhomirov_infra.git',
-   branch: "ansible-1"
+   branch: env.branch
 )
 }
 

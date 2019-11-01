@@ -1,0 +1,26 @@
+---
+- name: Configure App
+  hosts: app
+  become: true
+  vars:
+   db_host: "{{db_url}}"
+  tasks:
+    - name: Add unit file for Puma
+      copy:
+        src: files/otus.service
+        dest: /etc/systemd/system/otus.service
+      notify: reload otus
+
+    - name: Add config for DB connection
+      template:
+        src: templates/db_config.j2
+        dest: /home/tihomirovnv/app/db_config
+        owner: tihomirovnv
+        group: tihomirovnv
+
+    - name: enable otus
+      systemd: name=otus enabled=yes
+
+  handlers:
+  - name: reload otus
+    systemd: name=otus state=restarted

@@ -4,8 +4,9 @@
 [Домашня работа №4](#HW4)   
 [Домашня работа №5](#HW5)   
 [Домашня работа №6](#HW6)        
-[Домашня работа №7](#HW7)
-[Домашня работа №8](#HW8)
+[Домашня работа №7](#HW7)  
+[Домашня работа №8](#HW8) 
+[Домашня работа №9](#HW9)  
 <a name="HW2"></a>
 ## Примечание к ДЗ№2
 1. Travis
@@ -171,9 +172,19 @@ server puma-prod-0:8080 max_fails=1 fail_timeout=10s;
 
 <a name="HW8"></a>
 ## Примечание к ДЗ№8
-- Привет в порядок jobs jenkins  (https://otus.nt33.ru/jenkins), перевел предыдыщие jobs на pipeline:groovy (ознакомиться можно тут ./jenkins/*)
+- Привел в порядок jobs jenkins  (https://otus.nt33.ru/jenkins), перевел предыдыщие jobs на pipeline:groovy (ознакомиться можно тут ./jenkins/*)
 - Развернул окружение ansible на хосте jenkins в облаке (все подготовил для дальнейшей работы, большой плюс - НЕТ торчащих хостов наружу!)
 - Потренировался с запуском absible-playbook
 - Создал несколько файлов инвентори (в том числе динамический для динамического создание - ./inventory.py)
 - Создал простейший playbook: ping.yaml (ох уэ эта разметка yaml)
 - Продолжаем изучать packer,terraform, ansible, python
+
+<a name="HW9"></a>   
+## Примечание к ДЗ№9   
+- Написал скрипт который конектится к GCE выбирает хосты по определенным тегам(db,app,nginx) и создает json на выходе для динамического инвентори.(не забыть указывать  GOOGLE_APPLICATION_CREDENTIALS=). Можно ознакомиться тут - scripts/inventory.py
+```
+-bash-4.2$ ../scripts/inventory.py --list
+{"app": {"hosts": ["puma-prod-0", "puma-prod-1"], "vars": {"db_url": "10.164.0.61"}}, "db": {"hosts": ["mongo-prod"], "vars": {}}, "proxy": {"hosts": ["nginx-prod"], "vars": {}}, "_meta": {}}
+```
+- Ознакомился с функциональносью ansible
+- Изучил Packer+ansible
