@@ -1,0 +1,18 @@
+[Unit]
+Description=Puma HTTP Server
+After=network.target
+
+
+[Service]
+Type=simple
+
+User=tihomirovnv
+Group=tihomirovnv
+EnvironmentFile=/home/tihomirovnv/app/db_config
+WorkingDirectory=/home/tihomirovnv/app
+ExecStart=/usr/local/bin/puma -b tcp://0.0.0.0:8080
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
