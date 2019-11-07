@@ -1,2 +1,4 @@
 ---
-# handlers file for db/Install
+# handlers file for db
+  - name: restart mongod
+    service: name=mongod state=enable
