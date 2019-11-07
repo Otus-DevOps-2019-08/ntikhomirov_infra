@@ -1,2 +1,8 @@
 ---
-# handlers file for test-role-1
+  - name: systemctl enable nginx
+    systemd:
+    name: nginx
+    enabled: yes
+
+  - name: restart nginx
+    service: name=nginx state=restart
