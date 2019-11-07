@@ -3,7 +3,7 @@ sudo: required
 
 env:
   - distribution: ubuntu
-    version: 14
+    version: trusty
 
 services:
   - docker
