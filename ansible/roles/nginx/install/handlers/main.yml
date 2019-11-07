@@ -1,8 +1,8 @@
 ---
-  - name: systemctl enable nginx
-    systemd:
-    name: nginx
-    enabled: yes
+- name: systemctl enable nginx
+  systemd:
+  name: nginx
+  enabled: yes
 
-  - name: restart nginx
-    service: name=nginx state=restart
+- name: restart nginx
+  service: name=nginx state=restart
