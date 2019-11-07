@@ -3,7 +3,7 @@ sudo: required
 
 env:
   - distribution: ubuntu
-    version: trusty
+    version: xenial
 
 services:
   - docker
