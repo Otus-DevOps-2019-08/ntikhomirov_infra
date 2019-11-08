@@ -1,2 +1,4 @@
 ---
 # handlers file for app
+  - name: enable otus
+    systemd: name=otus enabled=yes

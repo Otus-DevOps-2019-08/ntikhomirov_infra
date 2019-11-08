@@ -1,5 +1,6 @@
 [app]
 appserver ansible_host=puma-prod-0
+
 [db]
 dbserver ansible_host=mongo-prod
 [nginx]

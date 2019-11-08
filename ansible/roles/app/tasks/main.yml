@@ -6,6 +6,3 @@
       dest: /home/tihomirovnv/app/db_config
       owner: tihomirovnv
       group: tihomirovnv
-
-  - name: enable otus
-    systemd: name=otus enabled=yes
