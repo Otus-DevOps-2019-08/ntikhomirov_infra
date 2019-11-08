@@ -1,7 +1,5 @@
 ---
 # handlers file for db
-  - name: 'systemctl enable mongod'
+  - name: 'systemctl mongod'
     systemd: name=mongod enable=yes
-
-  - name: restart mongod
     service: name=mongod state=restart
