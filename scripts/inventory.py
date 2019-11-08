@@ -81,7 +81,7 @@ class Inventory(object):
                           inventory['app']['hosts'].append(instance['name'])
                       elif str(i) == 'proxy':
                           inventory['proxy']['hosts'].append(instance['name'])
-                      elif str(i) == 'prod' || str(i) == 'test':
+                      elif str(i) == 'prod' or str(i) == 'test':
                           inventory['app']['vars']['env'] = str(i)
                           inventory['proxy']['vars']['env'] = str(i)
                           inventory['db']['vars']['env'] = str(i)
