@@ -11,8 +11,4 @@
     name: mongodb-org
     state: present
 
-- name: systemctl enable mongod
-  systemd:
-    name: mongod
-    enabled: yes
 ...
