@@ -3,7 +3,7 @@ resource "google_compute_instance" "puma" {
   name = "puma-${var.stand}-${count.index}"
   machine_type = "f1-micro"
   zone = "${var.region}"
-  tags = ["app"]
+  tags = ["app","${var.stand}"]
   boot_disk {
     initialize_params {
       image = "${var.image_name}"
