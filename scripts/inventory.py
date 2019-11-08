@@ -73,16 +73,18 @@ class Inventory(object):
                   t = instance['tags']['items']
                   for i in t:
                       if str(i)== 'db' :
-                          inventory['db']['hosts'].append(instance['name'])  
+                          inventory['db']['hosts'].append(instance['name'])
                           for j in instance['networkInterfaces'] :
                             inventory['app']['vars']['db_url'] = str(j['networkIP'])
 
                       elif str(i) == 'app':
                           inventory['app']['hosts'].append(instance['name'])
-
                       elif str(i) == 'proxy':
                           inventory['proxy']['hosts'].append(instance['name'])
-
+                      elif str(i) == 'prod' || str(i) == 'test':
+                          inventory['app']['vars']['env'] = str(i)
+                          inventory['proxy']['vars']['env'] = str(i)
+                          inventory['db']['vars']['env'] = str(i)
              request = service.instances().list_next(previous_request=request, previous_response=response)
 
           return inventory
