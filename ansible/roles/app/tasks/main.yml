@@ -1,2 +1,11 @@
 ---
 # tasks file for app
+  - name: Add config for DB connection
+    template:
+      src: db_config.j2
+      dest: /home/tihomirovnv/app/db_config
+      owner: tihomirovnv
+      group: tihomirovnv
+
+  - name: enable otus
+    systemd: name=otus enabled=yes
