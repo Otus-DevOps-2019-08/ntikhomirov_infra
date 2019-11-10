@@ -1,4 +1,6 @@
 - name: Deploy App
   hosts: app
   roles:
-    - app/install
+    - db
+    - app
+    - nginx2puma
