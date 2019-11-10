@@ -1,5 +1,5 @@
 - hosts: all
   roles:
-  - {role: nginx,
+  - {role: jdauphant.nginx,
      nginx_http_params: ["sendfile on", "access_log /var/log/nginx/access.log"]
                           }
