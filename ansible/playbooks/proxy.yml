@@ -1,6 +1,6 @@
 ---
 - name: Configure Nginx
-  hosts: nginx
+  hosts: proxy
   become: true
   roles:
     - nginx2puma
