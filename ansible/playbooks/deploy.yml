@@ -3,4 +3,4 @@
   roles:
     - db
     - app
-    - nginx2puma
+  
