@@ -45,11 +45,11 @@ git(
 //Запуск конфигураци ansible
 def start_ansible(stand){
   echo "Запуск конфигураци обновления mongo-db"
-  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/db.yml -i ../scripts/inventory.py"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/db.yml -i ../ansible/environments/${stand}/inventory.py"
   echo "Запуск конфигураци обновления Puma"
-  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/app.yml -i ../scripts/inventory.py"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/app.yml -i ../ansible/environments/${stand}/inventory.py"
   echo "Запуск конфигураци nginx"
-  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/proxy.yml -i ../scripts/inventory.py"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/proxy.yml -i ../ansible/environments/${stand}/inventory.py"
 }
 
 /*  --- Магия деплоя (функции) --- */
