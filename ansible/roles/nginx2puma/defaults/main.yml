@@ -1,4 +1,5 @@
 ---
 # defaults file for nginx
 port: 8080
+count: 1
 env: local

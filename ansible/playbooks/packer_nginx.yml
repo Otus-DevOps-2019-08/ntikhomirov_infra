@@ -1,6 +1,5 @@
----
-- name: Install nginx
-  hosts: proxy
-  become: true
+- hosts: all
   roles:
-    - nginxinc.nginx/setup
+  - {role: nginx,
+     nginx_http_params: ["sendfile on", "access_log /var/log/nginx/access.log"]
+                          }
