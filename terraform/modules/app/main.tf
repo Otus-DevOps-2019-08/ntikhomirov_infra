@@ -29,7 +29,7 @@ resource "google_compute_instance" "puma" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo /bin/sed -i 's/mongo-db/mongo-${var.stand}/g' /home/tihomirovnv/app/reddit/app.rb",
+      "sudo /bin/sed -i 's/mongo-db/mongo-${var.stand}/g' /home/tihomirovnv/app/app.rb",
       "sudo systemctl restart otus"
     ]
   }
