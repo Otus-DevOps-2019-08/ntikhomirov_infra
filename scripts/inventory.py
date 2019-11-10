@@ -12,6 +12,8 @@ gce = True
 
 evn = 'prod'
 
+count = 0
+
 #Подключаем модули для использования API GCE
 try:
     from googleapiclient import discovery
@@ -81,6 +83,7 @@ class Inventory(object):
 
                       elif str(i) == 'app':
                           inventory['app']['hosts'].append(instance['name'])
+                          count = count + 1
                       elif str(i) == 'proxy':
                           inventory['proxy']['hosts'].append(instance['name'])
                       elif str(i) == 'prod' or str(i) == 'test':
@@ -88,7 +91,7 @@ class Inventory(object):
                           inventory['proxy']['vars']['env'] = str(i)
                           inventory['db']['vars']['env'] = str(i)
              request = service.instances().list_next(previous_request=request, previous_response=response)
-
+          inventory['proxy']['vars']['ount'] = count
           return inventory
        else:
           with open('./inventory.yml') as f:

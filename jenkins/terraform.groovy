@@ -80,6 +80,7 @@ stage('Создание и конфигурация'){
   if(env.CREATE.toBoolean()){
     node('master'){
       startVM(global,env.STAND)
+      sleep(30)
       start_ansible()
     }
   }
