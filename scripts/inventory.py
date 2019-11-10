@@ -10,6 +10,8 @@ except ImportError:
 
 gce = True
 
+evn = 'prod'
+
 #Подключаем модули для использования API GCE
 try:
     from googleapiclient import discovery
