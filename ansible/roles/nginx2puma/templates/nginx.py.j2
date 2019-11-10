@@ -1,6 +1,6 @@
 import sys
 
-var = "{{ count | default('1') }}"
+var = {{ count | default('1') }}
 
 pref = "{{ env | default('test') }}"
 
