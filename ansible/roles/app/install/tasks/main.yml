@@ -24,7 +24,7 @@
       dest: /home/tihomirovnv/app
       version: monolith
   - name: debug install Puma
-    schell: "ls -axl /home/tihomirovnv/app"
+    shell: "ls -axl /home/tihomirovnv/app"
   - name: bundle install
     bundler:
       state: present
