@@ -24,7 +24,7 @@ except Exception as e:
 
 class Inventory(object):
     gce = ""
-    count = 0
+
     def __init__(self):
         self.inventory = {}
         self.read_cli_args()
@@ -42,6 +42,7 @@ class Inventory(object):
 
 
     def dynamic_inventory(self):
+       counta = 0
        inventory = {
            'app': {
                'hosts': [],
@@ -84,7 +85,7 @@ class Inventory(object):
 
                       elif str(i) == 'app':
                           inventory['app']['hosts'].append(instance['name'])
-                          count = count + 1
+                          counta += 1
                       elif str(i) == 'proxy':
                           inventory['proxy']['hosts'].append(instance['name'])
                       elif str(i) == 'prod' or str(i) == 'test':
@@ -92,7 +93,7 @@ class Inventory(object):
                           inventory['proxy']['vars']['env'] = str(i)
                           inventory['db']['vars']['env'] = str(i)
              request = service.instances().list_next(previous_request=request, previous_response=response)
-          inventory['proxy']['vars']['ount'] = str(count)
+          inventory['proxy']['vars']['ount'] = str(counta)
           return inventory
        else:
           with open('./inventory.yml') as f:
