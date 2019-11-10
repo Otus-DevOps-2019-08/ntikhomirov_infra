@@ -2,7 +2,7 @@ resource "google_compute_instance" "nginx" {
   name = "nginx-${var.stand}"
   machine_type = "f1-micro"
   zone = "${var.region}"
-  tags = ["reddit-nginx","proxy"]
+  tags = ["reddit-nginx","${var.stand}"]
   boot_disk {
     initialize_params {
       image = "${var.image_name}"
