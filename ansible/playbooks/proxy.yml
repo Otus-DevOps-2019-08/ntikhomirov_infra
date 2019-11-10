@@ -1,0 +1,6 @@
+---
+- name: Configure Nginx
+  hosts: nginx
+  become: true
+  roles:
+    - nginx2puma
