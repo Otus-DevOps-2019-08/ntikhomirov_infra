@@ -12,8 +12,8 @@
     src: nginx.py.j2
     dest: /tmp/nginx.py
     mode: 0774
-#Запускаем формировани нод алансировщика
-- name: start create node
+#Запускаем формировани нод балансировщика
+- name: "start create node"
   shell: |
     python /tmp/nginx.py
     mv /tmp/upstream.conf /etc/nginx/conf.d
