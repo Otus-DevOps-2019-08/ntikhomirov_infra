@@ -1,0 +1,11 @@
+---
+- name: Install nginx
+  hosts: proxy
+  become: true
+  vars:
+   env: "test"
+   port: "8080"
+   count: "1"
+  roles:
+    - nginxinc.nginx/setup
+    - nginx2puma

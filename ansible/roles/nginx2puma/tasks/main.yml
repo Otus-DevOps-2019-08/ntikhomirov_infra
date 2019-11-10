@@ -1,0 +1,19 @@
+---
+# tasks file for nginx
+# Закидываем шаблоны с конфигурацией
+- name: "Add conf nginx"
+  template:
+    src: otus.conf.j2
+    dest: /etc/nginx/conf.d
+    mode: 0644
+# Закидываем скрипт для формирования динамических хостов балансировщика (count добавляем в инвентори)
+- name: "Add dynamic conf nginx"
+  template:
+    src: nginx.py.j2
+    dest: /tmp/nginx.py
+    mode: 0774
+#Запускаем формировани нод алансировщика
+- name: start create node
+  shell: |
+    python /tmp/nginx.py
+    mv /tmp/upstream.conf /etc/nginx/conf.d
