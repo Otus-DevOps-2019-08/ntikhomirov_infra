@@ -93,7 +93,7 @@ class Inventory(object):
                           inventory['proxy']['vars']['env'] = str(i)
                           inventory['db']['vars']['env'] = str(i)
              request = service.instances().list_next(previous_request=request, previous_response=response)
-          inventory['proxy']['vars']['ount'] = str(counta)
+          inventory['proxy']['vars']['count'] = str(counta)
           return inventory
        else:
           with open('./inventory.yml') as f:
