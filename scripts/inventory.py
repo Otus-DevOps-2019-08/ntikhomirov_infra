@@ -24,6 +24,7 @@ except Exception as e:
 
 class Inventory(object):
     gce = ""
+    count = 0
     def __init__(self):
         self.inventory = {}
         self.read_cli_args()
@@ -91,7 +92,7 @@ class Inventory(object):
                           inventory['proxy']['vars']['env'] = str(i)
                           inventory['db']['vars']['env'] = str(i)
              request = service.instances().list_next(previous_request=request, previous_response=response)
-          inventory['proxy']['vars']['ount'] = count
+          inventory['proxy']['vars']['ount'] = str(count)
           return inventory
        else:
           with open('./inventory.yml') as f:
