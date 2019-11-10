@@ -4,7 +4,7 @@
 - name: "Add conf nginx"
   template:
     src: otus.conf.j2
-    dest: /etc/nginx/conf.d
+    dest: /etc/nginx/conf.d/otus.conf
     mode: 0644
 # Закидываем скрипт для формирования динамических хостов балансировщика (count добавляем в инвентори)
 - name: "Add dynamic conf nginx"
