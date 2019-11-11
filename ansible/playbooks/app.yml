@@ -1,0 +1,8 @@
+---
+- name: Configure App
+  hosts: app
+  become: true
+  vars:
+   db_host: "{{db_url}}"
+  roles:
+    - app

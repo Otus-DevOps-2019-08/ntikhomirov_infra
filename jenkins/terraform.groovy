@@ -43,11 +43,13 @@ git(
 }
 
 //Запуск конфигураци ansible
-def start_ansible(){
+def start_ansible(stand){
   echo "Запуск конфигураци обновления mongo-db"
-  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../scripts/inventory.py \n ansible-playbook db.yml -i ../scripts/inventory.py"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/db.yml -i ../ansible/environments/${stand}/inventory.py"
   echo "Запуск конфигураци обновления Puma"
-  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../scripts/inventory.py \n ansible-playbook app.yml -i ../scripts/inventory.py"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/app.yml -i ../ansible/environments/${stand}/inventory.py"
+  echo "Запуск конфигураци nginx"
+  sh script: "cd ${WORKSPACE}/ansible/ \n chmod +x ../ansible/environments/${stand}/inventory.py \n ansible-playbook playbooks/proxy.yml -i ../ansible/environments/${stand}/inventory.py"
 }
 
 /*  --- Магия деплоя (функции) --- */
@@ -78,7 +80,8 @@ stage('Создание и конфигурация'){
   if(env.CREATE.toBoolean()){
     node('master'){
       startVM(global,env.STAND)
-      start_ansible()
+      sleep(30)
+      start_ansible(env.STAND)
     }
   }
 }

@@ -1,0 +1,11 @@
+---
+# tasks file for MongoDB
+- name: Change mongo config file
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+    mode: 0644
+  notify: restart mongod
+# handlers file for db
+- name: restart mongod
+  service: name=mongod state=restarted

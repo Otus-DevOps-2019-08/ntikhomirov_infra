@@ -10,6 +10,10 @@ except ImportError:
 
 gce = True
 
+evn = 'prod'
+
+count = 0
+
 #Подключаем модули для использования API GCE
 try:
     from googleapiclient import discovery
@@ -20,6 +24,7 @@ except Exception as e:
 
 class Inventory(object):
     gce = ""
+
     def __init__(self):
         self.inventory = {}
         self.read_cli_args()
@@ -37,6 +42,7 @@ class Inventory(object):
 
 
     def dynamic_inventory(self):
+       counta = 0
        inventory = {
            'app': {
                'hosts': [],
@@ -73,18 +79,21 @@ class Inventory(object):
                   t = instance['tags']['items']
                   for i in t:
                       if str(i)== 'db' :
-                          inventory['db']['hosts'].append(instance['name'])  
+                          inventory['db']['hosts'].append(instance['name'])
                           for j in instance['networkInterfaces'] :
                             inventory['app']['vars']['db_url'] = str(j['networkIP'])
 
                       elif str(i) == 'app':
                           inventory['app']['hosts'].append(instance['name'])
-
+                          counta += 1
                       elif str(i) == 'proxy':
                           inventory['proxy']['hosts'].append(instance['name'])
-
+                      elif str(i) == 'prod' or str(i) == 'test':
+                          inventory['app']['vars']['env'] = str(i)
+                          inventory['proxy']['vars']['env'] = str(i)
+                          inventory['db']['vars']['env'] = str(i)
              request = service.instances().list_next(previous_request=request, previous_response=response)
-
+          inventory['proxy']['vars']['count'] = str(counta)
           return inventory
        else:
           with open('./inventory.yml') as f:
