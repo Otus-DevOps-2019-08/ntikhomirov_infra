@@ -1,8 +1,8 @@
 ---
 - name: Update systemd
-  hosts: all
+  hosts: app
   become: true
   roles:
     - app/install
-
+    - app
 ...

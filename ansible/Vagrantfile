@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     db.vm.network :private_network, ip: "10.10.10.10"
 
     db.vm.provision "ansible" do |ansible|
-      ansible.playbook = "playbooks/site.yml"
+      ansible.playbook = "playbooks/packer_db.yml"
       ansible.groups = {
       "db" => ["dbserver"],
       "db:vars" => {"mongo_bind_ip" => "0.0.0.0"}
@@ -22,5 +22,27 @@ Vagrant.configure("2") do |config|
     app.vm.box = "ubuntu/xenial64"
     app.vm.hostname = "appserver"
     app.vm.network :private_network, ip: "10.10.10.20"
+    app.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbooks/packer_app.yml"
+      ansible.groups = {
+      "app" => ["appserver"],
+      "app:vars" => {"db_host" => "10.10.10.10"}
+      }
+    end
+  end
+
+  config.vm.define "nginx" do |nginx|
+    nginx.vm.box = "ubuntu/xenial64"
+    nginx.vm.hostname = "nginx"
+    nginx.vm.network :private_network, ip: "10.10.10.30"
+
+    nginx.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbooks/packer_nginx.yml"
+      ansible.groups = {
+      "nginx" => ["nginx"],
+      "nginx:vars" => {"app_host" => "10.10.10.20"}
+      }
+    end
+
   end
 end
