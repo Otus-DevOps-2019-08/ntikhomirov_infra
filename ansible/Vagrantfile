@@ -1,3 +1,4 @@
+=begin
 Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |v|
@@ -17,6 +18,13 @@ Vagrant.configure("2") do |config|
       }
     end
   end
+end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provider :virtualbox do |v|
+    v.memory = 512
+  end
 
   config.vm.define "appserver" do |app|
     app.vm.box = "ubuntu/xenial64"
@@ -30,7 +38,13 @@ Vagrant.configure("2") do |config|
       }
     end
   end
+end
+=end
+Vagrant.configure("2") do |config|
 
+  config.vm.provider :virtualbox do |v|
+    v.memory = 512
+  end
   config.vm.define "nginx" do |nginx|
     nginx.vm.box = "ubuntu/xenial64"
     nginx.vm.hostname = "nginx"

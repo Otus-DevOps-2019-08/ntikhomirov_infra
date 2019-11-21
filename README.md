@@ -206,3 +206,5 @@ server puma-prod-0:8080 max_fails=1 fail_timeout=10s;
 - Vagrant установлен (vagrant -v  Vagrant 2.2.6)
 - Команда vagrant up (странное поведение, прождал около часа - пустая строка, нажал отмену - пошло работать). Люблю Windows новое обновление ломает половино ПО.
 - для включения отладочной информации - set VAGRANT_LOG=info
+- Для установки molecule также требует: gcc и python3-devel.x86_64
+- Надеюсь что это ruby (коменты ставим =begin и =end)
