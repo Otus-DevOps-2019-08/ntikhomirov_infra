@@ -1,6 +1,0 @@
----
-  - name: systemctl enable nginx
-    service: name=nginx state=enable
-
-  - name: restart nginx
-    service: name=nginx state=restart

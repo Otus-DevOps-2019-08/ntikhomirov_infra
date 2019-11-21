@@ -1,5 +1,5 @@
 server {
-listen 9090;
+listen {{ port | default('8080') }};
 
 access_log            /var/log/nginx/domain.name.access.log;
 

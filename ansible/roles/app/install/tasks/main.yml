@@ -26,10 +26,11 @@
   - name: bundle install
     bundler:
       state: present
-      chdir: /home/tihomirovnv/app/reddit
+      chdir: /home/tihomirovnv/app
   - name: Add unit file for Puma
-    copy:
-      src: otus.service
+    template:
+      src: otus.service.j2
       dest: /etc/systemd/system/otus.service
+      mode: 0644
 
 ...
