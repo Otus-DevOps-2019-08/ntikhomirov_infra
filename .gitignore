@@ -4,3 +4,10 @@ secret/*
 */*/*.pem
 *.retry
 jdauphant.nginx
+
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
