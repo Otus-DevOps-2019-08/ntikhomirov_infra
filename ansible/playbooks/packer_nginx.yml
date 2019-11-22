@@ -3,6 +3,6 @@
   hosts: all
   become: true
   roles:
-    - nginx2puma/install
+    - nginx2puma
 
 ...
