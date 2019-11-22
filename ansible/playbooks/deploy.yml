@@ -1,4 +1,5 @@
 - name: Deploy App
   hosts: app
   roles:
-    - app/install
+    - db
+    - app

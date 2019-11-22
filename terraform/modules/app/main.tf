@@ -3,7 +3,7 @@ resource "google_compute_instance" "puma" {
   name = "puma-${var.stand}-${count.index}"
   machine_type = "f1-micro"
   zone = "${var.region}"
-  tags = ["app","${var.stand}"]
+  tags = ["app-${var.stand}"]
   boot_disk {
     initialize_params {
       image = "${var.image_name}"
@@ -19,18 +19,5 @@ resource "google_compute_instance" "puma" {
 
   }
 
-  connection {
-      type         = "ssh"
-      user         = "tihomirovnv"
-      agent        = false
-      host         = "puma-${var.stand}-${count.index}"
-      private_key = "${file(var.private_key_path)}"
-  }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo /bin/sed -i 's/mongo-db/mongo-${var.stand}/g' /home/tihomirovnv/app/reddit/app.rb",
-      "sudo systemctl restart otus"
-    ]
-  }
 }
