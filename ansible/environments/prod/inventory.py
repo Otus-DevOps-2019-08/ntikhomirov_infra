@@ -10,9 +10,6 @@ except ImportError:
 
 gce = True
 
-evn = 'prod'
-
-count = 0
 
 #Подключаем модули для использования API GCE
 try:
@@ -78,20 +75,17 @@ class Inventory(object):
                if 'items' in instance['tags']:
                   t = instance['tags']['items']
                   for i in t:
-                      if str(i)== 'db' :
+                      if str(i)== 'db-prod' :
                           inventory['db']['hosts'].append(instance['name'])
                           for j in instance['networkInterfaces'] :
                             inventory['app']['vars']['db_url'] = str(j['networkIP'])
 
-                      elif str(i) == 'app':
+                      elif str(i) == 'app-prod':
                           inventory['app']['hosts'].append(instance['name'])
                           counta += 1
-                      elif str(i) == 'proxy':
+                      elif str(i) == 'proxy-prod':
                           inventory['proxy']['hosts'].append(instance['name'])
-                      elif str(i) == 'prod' or str(i) == 'test':
-                          inventory['app']['vars']['env'] = str(i)
-                          inventory['proxy']['vars']['env'] = str(i)
-                          inventory['db']['vars']['env'] = str(i)
+
              request = service.instances().list_next(previous_request=request, previous_response=response)
           inventory['proxy']['vars']['count'] = str(counta)
           return inventory
