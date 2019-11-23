@@ -1,5 +1,9 @@
 server {
+<<<<<<< HEAD:ansible/roles/nginx2puma/templates/otus.conf.j2
 listen {{ port | default('80') }};
+=======
+listen {{ port | default('8080') }};
+>>>>>>> origin/master:ansible/roles/nginx/templates/otus.conf
 
 access_log            /var/log/nginx/domain.name.access.log;
 

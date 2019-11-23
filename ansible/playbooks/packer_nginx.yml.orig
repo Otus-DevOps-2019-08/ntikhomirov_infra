@@ -4,9 +4,6 @@
   hosts: all
   become: true
   roles:
-    - {role: jdauphant.nginx,
-         nginx_http_params: ["sendfile on", "access_log /var/log/nginx/access.log"]
-                              }
     - nginx2puma
 
 ...
