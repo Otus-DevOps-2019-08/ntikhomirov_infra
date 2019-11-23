@@ -1,4 +1,9 @@
 ---
+- name: Install system soft
+  apt:
+    name: wget
+    state: present
+    
 - name: Add APT key
   shell: wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | apt-key add -
 - name: Add APT repository
