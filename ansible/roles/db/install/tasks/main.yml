@@ -16,6 +16,6 @@
 - name: "Install mongodb"
   apt:
     name: mongodb-org
-    state: present 
+    state: present
 
 ...
