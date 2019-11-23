@@ -17,5 +17,6 @@
   apt:
     name: mongodb-org
     state: present
+  tags: install  
 
 ...

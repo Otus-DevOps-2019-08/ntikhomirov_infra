@@ -1,6 +1,6 @@
 ---
 # handlers file for db
 - name: 'systemctl mongod'
-  systemd: name=mongodb enabled=yes
+  service: name=mongod state=Enabled
 
 ...
