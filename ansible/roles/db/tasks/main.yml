@@ -6,5 +6,9 @@
     dest: /etc/mongod.conf
     mode: 0644
   notify: restart mongod
-
+#Убрать после решения проблемы
+- name: ls
+  command: "ls -axl /etc/mongod.conf"
+- name: systemd
+  command: "ls -axl /etc/init.d/"
 ...
