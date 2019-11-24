@@ -5,6 +5,6 @@
     src: mongod.conf.j2
     dest: /etc/mongod.conf
     mode: 0644
-  notify: restart mongodb
+  notify: restart mongod
 
 ...
